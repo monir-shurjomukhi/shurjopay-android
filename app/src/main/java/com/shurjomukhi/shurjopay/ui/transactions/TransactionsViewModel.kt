@@ -1,13 +1,13 @@
-package com.shurjomukhi.shurjopay.ui.dashboard
+package com.shurjomukhi.shurjopay.ui.transactions
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class TransactionsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "This is Transactions Fragment"
     }
     val text: LiveData<String> = _text
 }
