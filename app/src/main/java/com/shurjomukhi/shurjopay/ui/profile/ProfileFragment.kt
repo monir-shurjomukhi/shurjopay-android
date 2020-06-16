@@ -1,4 +1,4 @@
-package com.shurjomukhi.shurjopay.ui.transactions
+package com.shurjomukhi.shurjopay.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.shurjomukhi.shurjopay.R
+import com.shurjomukhi.shurjopay.ui.transactions.ProfileViewModel
 
 class ProfileFragment : Fragment() {
 

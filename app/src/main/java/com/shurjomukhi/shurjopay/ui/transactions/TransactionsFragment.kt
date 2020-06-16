@@ -13,18 +13,18 @@ import com.shurjomukhi.shurjopay.R
 
 class TransactionsFragment : Fragment() {
 
-    private lateinit var profileViewModel: ProfileViewModel
+    private lateinit var transactionsViewModel: TransactionsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        profileViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
+        transactionsViewModel =
+            ViewModelProvider(this).get(TransactionsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_transactions, container, false)
         val textView: TextView = root.findViewById(R.id.text_transactions)
-        profileViewModel.text.observe(viewLifecycleOwner, Observer {
+        transactionsViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
