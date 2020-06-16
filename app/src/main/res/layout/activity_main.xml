@@ -36,14 +36,14 @@
         android:clickable="true"
         android:focusable="true"
         android:tint="@android:color/white"
-        app:backgroundTint="#009688"
-        app:elevation="8dp"
+        app:backgroundTint="@color/colorSecondary"
+        app:elevation="10dp"
         app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="@id/nav_view"
         app:layout_constraintStart_toStartOf="@id/nav_view"
         app:layout_constraintTop_toTopOf="@+id/nav_view"
-        app:rippleColor="#FF7043"
-        app:srcCompat="@drawable/ic_shopping_cart" />
+        app:rippleColor="@color/colorPrimary"
+        app:srcCompat="@drawable/ic_scan" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

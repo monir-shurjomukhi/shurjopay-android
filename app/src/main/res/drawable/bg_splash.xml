@@ -3,7 +3,7 @@
 
     <item android:drawable="@android:color/white" />
     <item>
-        <bitmap android:src="@drawable/ic_qr_scan"
+        <bitmap android:src="@drawable/ic_qr_scan_2"
             android:gravity="center" />
     </item>
 </layer-list>
