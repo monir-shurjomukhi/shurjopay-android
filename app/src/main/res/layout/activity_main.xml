@@ -39,10 +39,11 @@
         app:backgroundTint="@color/colorSecondary"
         app:elevation="10dp"
         app:fabSize="normal"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/nav_view"
         app:layout_constraintStart_toStartOf="@id/nav_view"
-        app:layout_constraintTop_toTopOf="@+id/nav_view"
+        app:layout_constraintTop_toTopOf="@+id/nav_host_fragment"
+        app:layout_constraintVertical_bias="0.97"
         app:rippleColor="@color/colorPrimary"
         app:srcCompat="@drawable/ic_scan" />
 
