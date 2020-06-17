@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.shurjomukhi.shurjopay.ui.home.HomeFragment"
+        android:name="com.shurjomukhi.shurjopay.ui.fragment.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_transactions"
-        android:name="com.shurjomukhi.shurjopay.ui.transactions.TransactionsFragment"
+        android:name="com.shurjomukhi.shurjopay.ui.fragment.TransactionsFragment"
         android:label="@string/title_transactions"
         tools:layout="@layout/fragment_transactions" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.shurjomukhi.shurjopay.ui.notifications.NotificationsFragment"
+        android:name="com.shurjomukhi.shurjopay.ui.fragment.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.shurjomukhi.shurjopay.ui.profile.ProfileFragment"
+        android:name="com.shurjomukhi.shurjopay.ui.fragment.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

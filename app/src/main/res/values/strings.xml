@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Shurjo Pay</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">HOME</string>
-    <string name="title_transactions">TRANSACTIONS</string>
-    <string name="title_notifications">NOTIFICATIONS</string>
-    <string name="title_profile">PROFILE</string>
-    <string name="title_dashboard">Dashboard</string>
+  <string name="app_name">Shurjo Pay</string>
+  <string name="title_activity_main">MainActivity</string>
+  <string name="title_home">HOME</string>
+  <string name="title_transactions">TRANSACTIONS</string>
+  <string name="title_notifications">NOTIFICATIONS</string>
+  <string name="title_profile">PROFILE</string>
+  <string name="title_dashboard">Dashboard</string>
 </resources>
