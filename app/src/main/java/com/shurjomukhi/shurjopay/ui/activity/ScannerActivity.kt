@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.Result
+import com.shurjomukhi.shurjopay.R
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
 class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
@@ -38,6 +39,11 @@ class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
     // If you would like to resume scanning, call this method below:
     //mScannerView.resumeCameraPreview(this)
+  }
+
+  override fun finish() {
+    super.finish()
+    overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom)
   }
 
   companion object {
