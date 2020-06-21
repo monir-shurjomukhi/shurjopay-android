@@ -14,6 +14,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.shurjomukhi.shurjopay.R
+import com.shurjomukhi.shurjopay.ui.activity.demoscanner.FullScannerActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
   fun openScanner(view: View) {
     if (hasCameraPermission()) {
-      startActivity(Intent(this, ScannerActivity::class.java))
+      startActivity(Intent(this, FullScannerActivity::class.java))
       overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
     } else {
       requestCameraPermission()
@@ -73,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     when(requestCode) {
       PERMISSION_REQUEST_CODE -> {
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-          startActivity(Intent(this, ScannerActivity::class.java))
+          startActivity(Intent(this, FullScannerActivity::class.java))
         overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
       }
     }

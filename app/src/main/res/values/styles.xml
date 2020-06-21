@@ -19,4 +19,10 @@
     <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
   </style>
 
+  <style name="TransparentToolbar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <item name="android:windowActionBarOverlay">true</item>
+    <!-- Support Library compability -->
+    <item name="windowActionBarOverlay">true</item>
+  </style>
+
 </resources>
