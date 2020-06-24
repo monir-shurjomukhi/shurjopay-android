@@ -2,22 +2,29 @@ package com.shurjomukhi.shurjopay.ui.activity
 
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.google.zxing.Result
 import com.shurjomukhi.shurjopay.R
+import com.shurjomukhi.shurjopay.databinding.ActivityScannerBinding
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
 class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
+  private lateinit var mBinding: ActivityScannerBinding
   private lateinit var mScannerView: ZXingScannerView
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    mBinding = DataBindingUtil.setContentView(this, R.layout.activity_scanner)
 
     mScannerView = ZXingScannerView(this)
-    mScannerView.setLaserEnabled(false)
-    setContentView(mScannerView)
+    mBinding.contentFrame.addView(mScannerView)
+
+    supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    supportActionBar?.title = getString(R.string.scan_to_pay)
   }
 
   override fun onResume() {
@@ -44,6 +51,16 @@ class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
   override fun finish() {
     super.finish()
     overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom)
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    when (item.itemId) {
+      android.R.id.home -> {
+        finish()
+        return true
+      }
+    }
+    return super.onOptionsItemSelected(item)
   }
 
   companion object {
