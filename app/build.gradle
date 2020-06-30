@@ -51,4 +51,7 @@ dependencies {
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
   implementation 'me.dm7.barcodescanner:zxing:1.9.13'
   implementation 'cards.pay:paycardsrecognizer:1.1.0'
+  implementation('com.microblink:blinkcard:1.1.0@aar') {
+    transitive = true
+  }
 }

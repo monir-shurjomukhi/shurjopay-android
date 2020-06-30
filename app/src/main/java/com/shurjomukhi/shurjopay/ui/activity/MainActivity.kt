@@ -18,10 +18,18 @@ import androidx.navigation.ui.setupWithNavController
 import cards.pay.paycardsrecognizer.sdk.Card
 import cards.pay.paycardsrecognizer.sdk.ScanCardIntent
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.microblink.entities.recognizers.Recognizer
+import com.microblink.entities.recognizers.RecognizerBundle
+import com.microblink.entities.recognizers.blinkcard.BlinkCardRecognizer
+import com.microblink.uisettings.ActivityRunner
+import com.microblink.uisettings.BlinkCardUISettings
 import com.shurjomukhi.shurjopay.R
 
 
 class MainActivity : AppCompatActivity() {
+
+  private lateinit var mRecognizer: BlinkCardRecognizer
+  private lateinit var mRecognizerBundle: RecognizerBundle
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -41,12 +49,19 @@ class MainActivity : AppCompatActivity() {
     )
     setupActionBarWithNavController(navController, appBarConfiguration)
     navView.setupWithNavController(navController)
+
+    // create BlinkCardRecognizer
+    mRecognizer = BlinkCardRecognizer()
+
+    // bundle recognizers into RecognizerBundle
+    mRecognizerBundle = RecognizerBundle(mRecognizer)
   }
 
   fun openScanner(view: View) {
     if (hasCameraPermission()) {
       //startActivity(Intent(this, ScannerActivity::class.java))
-      scanCard()
+      //scanCard()
+      startScanning()
       overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
     } else {
       requestCameraPermission()
@@ -81,7 +96,8 @@ class MainActivity : AppCompatActivity() {
       PERMISSION_REQUEST_CODE -> {
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
           //startActivity(Intent(this, ScannerActivity::class.java))
-          scanCard()
+          //scanCard()
+          startScanning()
           overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
         }
       }
@@ -120,12 +136,39 @@ class MainActivity : AppCompatActivity() {
           Log.i(TAG, "Scan failed")
         }
       }
+    } else if (requestCode == REQUEST_CODE_SCAN_CARD_BLINK) {
+      if (resultCode == Activity.RESULT_OK && data != null) {
+        // load the data into all recognizers bundled within your RecognizerBundle
+        mRecognizerBundle.loadFromIntent(data)
+
+        // now every recognizer object that was bundled within RecognizerBundle
+        // has been updated with results obtained during scanning session
+
+        // you can get the result by invoking getResult on recognizer
+        val result = mRecognizer.result
+        if (result.resultState == Recognizer.Result.State.Valid) {
+          // result is valid, you can use it however you wish
+          Toast.makeText(this, result.toString(), Toast.LENGTH_LONG).show()
+        }
+      }
     }
+  }
+
+  // method within MyActivity from previous step
+  private fun startScanning() {
+    // Settings for BlinkCardActivity
+    val settings = BlinkCardUISettings(mRecognizerBundle)
+
+    // tweak settings as you wish
+
+    // Start activity
+    ActivityRunner.startActivityForResult(this, REQUEST_CODE_SCAN_CARD_BLINK, settings)
   }
 
   companion object {
     private const val TAG = "MainActivity"
     private const val PERMISSION_REQUEST_CODE = 1
     private const val REQUEST_CODE_SCAN_CARD = 2
+    private const val REQUEST_CODE_SCAN_CARD_BLINK = 3
   }
 }
