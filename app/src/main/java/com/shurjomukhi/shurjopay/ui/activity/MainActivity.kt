@@ -145,11 +145,13 @@ class MainActivity : AppCompatActivity() {
         // has been updated with results obtained during scanning session
 
         // you can get the result by invoking getResult on recognizer
-        val result = mRecognizer.result
+        val result: BlinkCardRecognizer.Result = mRecognizer.result
         if (result.resultState == Recognizer.Result.State.Valid) {
           // result is valid, you can use it however you wish
-          Toast.makeText(this, result.toString(), Toast.LENGTH_LONG).show()
-          Log.d(TAG, "onActivityResult: result.toString() = $result")
+          Toast.makeText(this, result.cardNumber, Toast.LENGTH_LONG).show()
+          Log.d(TAG, "onActivityResult: result.cardNumber = ${result.cardNumber}" +
+              "\n result.cvv = ${result.cvv}\n result.owner = ${result.owner}" +
+              "\n result.validThru = ${result.validThru}")
         }
       }
     }
