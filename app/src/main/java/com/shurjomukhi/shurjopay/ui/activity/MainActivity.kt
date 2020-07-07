@@ -149,9 +149,11 @@ class MainActivity : AppCompatActivity() {
         if (result.resultState == Recognizer.Result.State.Valid) {
           // result is valid, you can use it however you wish
           Toast.makeText(this, result.cardNumber, Toast.LENGTH_LONG).show()
-          Log.d(TAG, "onActivityResult: result.cardNumber = ${result.cardNumber}" +
-              "\n result.cvv = ${result.cvv}\n result.owner = ${result.owner}" +
-              "\n result.validThru = ${result.validThru}")
+          Log.d(
+            TAG, "onActivityResult: result.cardNumber = ${result.cardNumber}" +
+                "\n result.cvv = ${result.cvv}\n result.owner = ${result.owner}" +
+                "\n result.validThru = ${result.validThru}"
+          )
         }
       }
     }
