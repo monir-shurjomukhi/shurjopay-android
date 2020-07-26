@@ -11,14 +11,14 @@ import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.databinding.ActivityScannerBinding
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
-class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
+class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
   private lateinit var mBinding: ActivityScannerBinding
   private lateinit var mScannerView: ZXingScannerView
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    mBinding = DataBindingUtil.setContentView(this, R.layout.activity_scanner)
+    mBinding = DataBindingUtil.setContentView(this, R.layout.activity_qr_scanner)
 
     mScannerView = ZXingScannerView(this)
     mBinding.contentFrame.addView(mScannerView)

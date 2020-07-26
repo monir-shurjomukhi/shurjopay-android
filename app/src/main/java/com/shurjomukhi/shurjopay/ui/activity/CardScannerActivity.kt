@@ -7,7 +7,6 @@ import com.shurjomukhi.shurjopay.R
 
 class CardScannerActivity : AppCompatActivity() {
 
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
