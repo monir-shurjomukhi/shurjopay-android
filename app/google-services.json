@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "740202187160",
+    "firebase_url": "https://shurjopay.firebaseio.com",
+    "project_id": "shurjopay",
+    "storage_bucket": "shurjopay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740202187160:android:1245d9b256e6edc2b583ed",
+        "android_client_info": {
+          "package_name": "com.shurjomukhi.shurjopay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "740202187160-3ub3n2toas8otf7ipbscq8dh7855orpl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp2984wBbapwimCY5yYRYVyWCYz7pJ_4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "740202187160-3ub3n2toas8otf7ipbscq8dh7855orpl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
