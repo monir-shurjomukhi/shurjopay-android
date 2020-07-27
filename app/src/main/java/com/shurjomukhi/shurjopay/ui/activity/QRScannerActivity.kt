@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.zxing.Result
 import com.shurjomukhi.shurjopay.R
-import com.shurjomukhi.shurjopay.databinding.ActivityScannerBinding
+import com.shurjomukhi.shurjopay.databinding.ActivityQrScannerBinding
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
 class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
-  private lateinit var mBinding: ActivityScannerBinding
+  private lateinit var mBinding: ActivityQrScannerBinding
   private lateinit var mScannerView: ZXingScannerView
 
   override fun onCreate(savedInstanceState: Bundle?) {

@@ -18,4 +18,7 @@
   <string name="ok_button">OK</string>
   <string name="cancel_button">Cancel</string>
   <string name="scan_to_pay">Scan To Pay</string>
+  <string name="gallery">Gallery</string>
+  <string name="light">Light</string>
+  <string name="help">Help</string>
 </resources>

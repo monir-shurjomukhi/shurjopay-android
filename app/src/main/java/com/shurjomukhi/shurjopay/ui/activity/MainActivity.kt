@@ -59,9 +59,9 @@ class MainActivity : AppCompatActivity() {
 
   fun openScanner(view: View) {
     if (hasCameraPermission()) {
-      //startActivity(Intent(this, ScannerActivity::class.java))
+      startActivity(Intent(this, QRScannerActivity::class.java))
       //scanCard()
-      startScanning()
+      //startScanning()
       overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
     } else {
       requestCameraPermission()
@@ -95,8 +95,8 @@ class MainActivity : AppCompatActivity() {
     when (requestCode) {
       PERMISSION_REQUEST_CODE -> {
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-          //startActivity(Intent(this, ScannerActivity::class.java))
-          //scanCard()
+          startActivity(Intent(this, QRScannerActivity::class.java))
+          scanCard()
           startScanning()
           overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
         }

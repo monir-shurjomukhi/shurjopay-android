@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <data>
 
@@ -14,5 +15,35 @@
       android:id="@+id/contentFrame"
       android:layout_width="match_parent"
       android:layout_height="match_parent" />
+
+    <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent">
+
+      <Button
+        android:id="@+id/galleryButton"
+        android:text="@string/gallery"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"/>
+
+      <Button
+        android:id="@+id/lightButton"
+        android:text="@string/light"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"/>
+
+      <Button
+        android:id="@+id/helpButton"
+        android:text="@string/help"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
