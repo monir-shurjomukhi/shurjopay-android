@@ -1,8 +1,10 @@
 package com.shurjomukhi.shurjopay.ui.activity
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -21,6 +23,11 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     mBinding = DataBindingUtil.setContentView(this, R.layout.activity_qr_scanner)
 
     mScannerView = ZXingScannerView(this)
+    mScannerView.setBorderColor(Color.WHITE)
+    mScannerView.setIsBorderCornerRounded(true)
+    mScannerView.setBorderCornerRadius(10)
+    mScannerView.setLaserColor(Color.WHITE)
+    mScannerView.setSquareViewFinder(true)
     mBinding.contentFrame.addView(mScannerView)
 
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -40,8 +47,10 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
   }
 
   override fun handleResult(rawResult: Result) {
-    Log.v(Companion.TAG, rawResult.text) // Prints scan results
-    Log.v(Companion.TAG, rawResult.barcodeFormat.toString()) // Prints the scan format (qrcode, pdf417 etc.)
+    Log.v(TAG, rawResult.text) // Prints scan results
+    Log.v(
+      TAG, rawResult.barcodeFormat.toString()
+    ) // Prints the scan format (qrcode, pdf417 etc.)
     Toast.makeText(this, rawResult.text, Toast.LENGTH_SHORT).show()
 
     // If you would like to resume scanning, call this method below:
@@ -65,5 +74,9 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
   companion object {
     private const val TAG = "QRScannerActivity"
+  }
+
+  fun toggleFlash(view: View) {
+    mScannerView.toggleFlash()
   }
 }
