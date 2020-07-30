@@ -28,8 +28,8 @@ import com.shurjomukhi.shurjopay.R
 
 class MainActivity : AppCompatActivity() {
 
-  private lateinit var mRecognizer: BlinkCardRecognizer
-  private lateinit var mRecognizerBundle: RecognizerBundle
+  /*private lateinit var mRecognizer: BlinkCardRecognizer
+  private lateinit var mRecognizerBundle: RecognizerBundle*/
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -51,10 +51,10 @@ class MainActivity : AppCompatActivity() {
     navView.setupWithNavController(navController)
 
     // create BlinkCardRecognizer
-    mRecognizer = BlinkCardRecognizer()
+    //mRecognizer = BlinkCardRecognizer()
 
     // bundle recognizers into RecognizerBundle
-    mRecognizerBundle = RecognizerBundle(mRecognizer)
+    //mRecognizerBundle = RecognizerBundle(mRecognizer)
   }
 
   fun openScanner(view: View) {
@@ -96,8 +96,8 @@ class MainActivity : AppCompatActivity() {
       PERMISSION_REQUEST_CODE -> {
         if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
           startActivity(Intent(this, QRScannerActivity::class.java))
-          scanCard()
-          startScanning()
+          //scanCard()
+          //startScanning()
           overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
         }
       }
@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity() {
     } else if (requestCode == REQUEST_CODE_SCAN_CARD_BLINK) {
       if (resultCode == Activity.RESULT_OK && data != null) {
         // load the data into all recognizers bundled within your RecognizerBundle
-        mRecognizerBundle.loadFromIntent(data)
+        /*mRecognizerBundle.loadFromIntent(data)
 
         // now every recognizer object that was bundled within RecognizerBundle
         // has been updated with results obtained during scanning session
@@ -154,13 +154,13 @@ class MainActivity : AppCompatActivity() {
                 "\n result.cvv = ${result.cvv}\n result.owner = ${result.owner}" +
                 "\n result.validThru = ${result.validThru}"
           )
-        }
+        }*/
       }
     }
   }
 
   // method within MyActivity from previous step
-  private fun startScanning() {
+  /*private fun startScanning() {
     // Settings for BlinkCardActivity
     val settings = BlinkCardUISettings(mRecognizerBundle)
 
@@ -168,7 +168,7 @@ class MainActivity : AppCompatActivity() {
 
     // Start activity
     ActivityRunner.startActivityForResult(this, REQUEST_CODE_SCAN_CARD_BLINK, settings)
-  }
+  }*/
 
   companion object {
     private const val TAG = "MainActivity"

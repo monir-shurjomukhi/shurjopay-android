@@ -17,33 +17,63 @@
       android:layout_height="match_parent" />
 
     <LinearLayout
-      android:orientation="horizontal"
+      android:background="@drawable/bg_round_rect"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/activity_horizontal_margin"
+      android:layout_marginEnd="@dimen/activity_horizontal_margin"
+      android:layout_marginBottom="@dimen/activity_vertical_margin"
+      android:orientation="horizontal"
+      android:padding="16dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent">
 
       <Button
         android:id="@+id/galleryButton"
-        android:text="@string/gallery"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_height="wrap_content"/>
+        android:background="@drawable/bg_qr_button"
+        android:drawableTop="@drawable/ic_gallery"
+        android:drawablePadding="8dp"
+        android:padding="12dp"
+        android:textSize="12sp"
+        android:text="@string/gallery" />
+
+      <View
+        android:layout_width="8dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent" />
 
       <Button
         android:id="@+id/lightButton"
-        android:text="@string/light"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_height="wrap_content"/>
+        android:background="@drawable/bg_qr_button"
+        android:drawableTop="@drawable/ic_light"
+        android:drawablePadding="8dp"
+        android:padding="12dp"
+        android:textSize="12sp"
+        android:text="@string/light" />
+
+      <View
+        android:layout_width="8dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent" />
 
       <Button
         android:id="@+id/helpButton"
-        android:text="@string/help"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_height="wrap_content"/>
+        android:background="@drawable/bg_qr_button"
+        android:drawableTop="@drawable/ic_help"
+        android:drawablePadding="8dp"
+        android:padding="12dp"
+        android:textSize="12sp"
+        android:text="@string/help" />
     </LinearLayout>
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
