@@ -17,12 +17,12 @@
       android:layout_height="match_parent" />
 
     <LinearLayout
-      android:background="@drawable/bg_round_rect"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginStart="@dimen/activity_horizontal_margin"
       android:layout_marginEnd="@dimen/activity_horizontal_margin"
       android:layout_marginBottom="@dimen/activity_vertical_margin"
+      android:background="@drawable/bg_round_rect"
       android:orientation="horizontal"
       android:padding="16dp"
       app:layout_constraintBottom_toBottomOf="parent"
@@ -37,9 +37,10 @@
         android:background="@drawable/bg_qr_button"
         android:drawableTop="@drawable/ic_gallery"
         android:drawablePadding="8dp"
+        android:onClick="pickImage"
         android:padding="12dp"
-        android:textSize="12sp"
-        android:text="@string/gallery" />
+        android:text="@string/gallery"
+        android:textSize="12sp" />
 
       <View
         android:layout_width="8dp"
@@ -51,13 +52,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:onClick="toggleFlash"
         android:background="@drawable/bg_qr_button"
         android:drawableTop="@drawable/ic_light"
         android:drawablePadding="8dp"
+        android:onClick="toggleFlash"
         android:padding="12dp"
-        android:textSize="12sp"
-        android:text="@string/light" />
+        android:text="@string/light"
+        android:textSize="12sp" />
 
       <View
         android:layout_width="8dp"
@@ -73,8 +74,8 @@
         android:drawableTop="@drawable/ic_help"
         android:drawablePadding="8dp"
         android:padding="12dp"
-        android:textSize="12sp"
-        android:text="@string/help" />
+        android:text="@string/help"
+        android:textSize="12sp" />
     </LinearLayout>
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
