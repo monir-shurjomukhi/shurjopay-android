@@ -21,4 +21,7 @@
   <string name="gallery">Gallery</string>
   <string name="light">Light</string>
   <string name="help">Help</string>
+  <string name="payment_successful">Payment Successful</string>
+  <string name="your_payment_has_been_successful">Your payment has been successful!</string>
+  <string name="ok">OK</string>
 </resources>
