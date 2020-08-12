@@ -1,5 +1,6 @@
 package com.shurjomukhi.shurjopay.ui.activity
 
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -11,6 +12,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -65,6 +67,16 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
     // If you would like to resume scanning, call this method below:
     //mScannerView.resumeCameraPreview(this)
+
+    val dialog = Dialog(this)
+    dialog.setContentView(R.layout.dialog_success)
+    dialog.setCancelable(false)
+    val okButton: Button = dialog.findViewById(R.id.okButton)
+    okButton.setOnClickListener {
+      dialog.dismiss()
+    }
+
+    dialog.show()
   }
 
   override fun finish() {
