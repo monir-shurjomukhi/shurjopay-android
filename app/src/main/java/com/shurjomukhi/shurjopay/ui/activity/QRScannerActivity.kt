@@ -71,6 +71,7 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     val dialog = Dialog(this)
     dialog.setContentView(R.layout.dialog_success)
     dialog.setCancelable(false)
+    dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
     val okButton: Button = dialog.findViewById(R.id.okButton)
     okButton.setOnClickListener {
       dialog.dismiss()
