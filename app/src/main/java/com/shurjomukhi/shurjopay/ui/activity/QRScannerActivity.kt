@@ -1,23 +1,26 @@
 package com.shurjomukhi.shurjopay.ui.activity
 
-import android.app.Dialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.ImageDecoder
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
+import android.view.Window
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog
 import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.databinding.ActivityQrScannerBinding
 import me.dm7.barcodescanner.zxing.ZXingScannerView
@@ -68,16 +71,32 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     // If you would like to resume scanning, call this method below:
     //mScannerView.resumeCameraPreview(this)
 
-    val dialog = Dialog(this)
-    dialog.setContentView(R.layout.dialog_success)
+    /*val dialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+    //dialog.setContentView(R.layout.dialog_success)
     dialog.setCancelable(false)
-    dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+    dialog.titleText = "Payment Successful"
+    dialog.contentText = "Your payment has been successful"
+    dialog.confirmText = "OK"
+    dialog.setCustomImage(R.drawable.ic_check_list)
+    dialog.setConfirmClickListener {
+      dialog.dismiss()
+    }
+    *//*dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
     val okButton: Button = dialog.findViewById(R.id.okButton)
     okButton.setOnClickListener {
       dialog.dismiss()
-    }
+    }*//*
 
-    dialog.show()
+    dialog.show()*/
+
+    val layoutInflater = LayoutInflater.from(this)
+    val view = layoutInflater.inflate(R.layout.dialog_success_2, null)
+    val builder = AlertDialog.Builder(this)
+    builder.setView(view)
+    val alertDialog = builder.create()
+    alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+    alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    alertDialog.show()
   }
 
   override fun finish() {
