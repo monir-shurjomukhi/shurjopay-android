@@ -14,6 +14,8 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.Window
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -27,11 +29,12 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
 import java.io.IOException
 import java.lang.Exception
 
-
 class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
   private lateinit var mBinding: ActivityQrScannerBinding
   private lateinit var mScannerView: ZXingScannerView
+
+  private lateinit var alertDialog: AlertDialog
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -68,34 +71,23 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     ) // Prints the scan format (qrcode, pdf417 etc.)
     Toast.makeText(this, rawResult.text, Toast.LENGTH_SHORT).show()
 
-    // If you would like to resume scanning, call this method below:
-    //mScannerView.resumeCameraPreview(this)
-
-    /*val dialog = SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-    //dialog.setContentView(R.layout.dialog_success)
-    dialog.setCancelable(false)
-    dialog.titleText = "Payment Successful"
-    dialog.contentText = "Your payment has been successful"
-    dialog.confirmText = "OK"
-    dialog.setCustomImage(R.drawable.ic_check_list)
-    dialog.setConfirmClickListener {
-      dialog.dismiss()
-    }
-    *//*dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-    val okButton: Button = dialog.findViewById(R.id.okButton)
-    okButton.setOnClickListener {
-      dialog.dismiss()
-    }*//*
-
-    dialog.show()*/
-
     val layoutInflater = LayoutInflater.from(this)
-    val view = layoutInflater.inflate(R.layout.dialog_success_2, null)
+    val view = layoutInflater.inflate(R.layout.dialog_success, null)
+    val titleTextView = view.findViewById<TextView>(R.id.titleTextView)
+    titleTextView.text = getString(R.string.payment_successful)
+    val descriptionTextView = view.findViewById<TextView>(R.id.descriptionTextView)
+    descriptionTextView.text = getString(R.string.your_payment_has_been_successful)
+    val okTextView = view.findViewById<TextView>(R.id.okTextView)
+    okTextView.setOnClickListener {
+      alertDialog.dismiss()
+      finish()
+    }
     val builder = AlertDialog.Builder(this)
     builder.setView(view)
-    val alertDialog = builder.create()
+    alertDialog = builder.create()
     alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
     alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    alertDialog.setCancelable(false)
     alertDialog.show()
   }
 
