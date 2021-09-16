@@ -69,7 +69,7 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     Log.v(
       TAG, rawResult.barcodeFormat.toString()
     ) // Prints the scan format (qrcode, pdf417 etc.)
-    Toast.makeText(this, rawResult.text, Toast.LENGTH_SHORT).show()
+    //Toast.makeText(this, rawResult.text, Toast.LENGTH_SHORT).show()
 
     val layoutInflater = LayoutInflater.from(this)
     val view = layoutInflater.inflate(R.layout.dialog_success, null)
@@ -77,6 +77,7 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     titleTextView.text = getString(R.string.payment_successful)
     val descriptionTextView = view.findViewById<TextView>(R.id.descriptionTextView)
     descriptionTextView.text = getString(R.string.your_payment_has_been_successful)
+    descriptionTextView.text = rawResult.text
     val okTextView = view.findViewById<TextView>(R.id.okTextView)
     okTextView.setOnClickListener {
       alertDialog.dismiss()
