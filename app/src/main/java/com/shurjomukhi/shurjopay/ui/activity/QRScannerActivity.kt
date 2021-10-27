@@ -4,30 +4,30 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.ImageDecoder
-import android.graphics.drawable.ColorDrawable
+import android.net.DnsResolver
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.Window
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
-import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog
 import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.databinding.ActivityQrScannerBinding
+import com.shurjomukhi.shurjopay.model.QrCode
+import com.shurjomukhi.shurjopay.networking.ApiClient
+import com.shurjomukhi.shurjopay.networking.ApiInterface
 import me.dm7.barcodescanner.zxing.ZXingScannerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.IOException
-import java.lang.Exception
 
 class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
@@ -69,9 +69,11 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     Log.v(
       TAG, rawResult.barcodeFormat.toString()
     ) // Prints the scan format (qrcode, pdf417 etc.)
-    //Toast.makeText(this, rawResult.text, Toast.LENGTH_SHORT).show()
+    Toast.makeText(this, rawResult.text, Toast.LENGTH_SHORT).show()
 
-    val layoutInflater = LayoutInflater.from(this)
+    getHtml(rawResult.text)
+
+    /*val layoutInflater = LayoutInflater.from(this)
     val view = layoutInflater.inflate(R.layout.dialog_success, null)
     val titleTextView = view.findViewById<TextView>(R.id.titleTextView)
     titleTextView.text = getString(R.string.payment_successful)
@@ -89,7 +91,24 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
     alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     alertDialog.setCancelable(false)
-    alertDialog.show()
+    alertDialog.show()*/
+  }
+
+  private fun getHtml(qrData: String) {
+    val qrCode = QrCode(qrData)
+    ApiClient().getApiClient("http://qr.shurjopay.com.bd/")?.create(ApiInterface::class.java)
+      ?.pay(qrCode)?.enqueue(object : Callback<String> {
+        override fun onResponse(call: Call<String>, response: Response<String>) {
+          Log.d(TAG, "onResponse: ${response.body()}")
+          val intent = Intent(this@QRScannerActivity, PaymentActivity::class.java)
+          intent.putExtra("html", response.body())
+          startActivity(intent)
+        }
+
+        override fun onFailure(call: Call<String>, t: Throwable) {
+          Log.e(TAG, "onFailure: ${t.message}", t)
+        }
+      })
   }
 
   override fun finish() {
@@ -189,7 +208,7 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         val newBitmap = BinaryBitmap(HybridBinarizer(source))
 
         val reader = MultiFormatReader()
-        val result = reader.decode(newBitmap);
+        val result = reader.decode(newBitmap)
         contents = result.text
         Log.d(TAG, "decodeQR: contents = $contents")
         Toast.makeText(this, contents, Toast.LENGTH_LONG).show()
