@@ -36,4 +36,6 @@
   <string name="email">Email</string>
   <string name="name">Name</string>
   <string name="enter_the_phone_number_associated_with_your_account">Enter the phone number associated with your account</string>
+  <string name="verify">Verify</string>
+  <string name="enter_the_4_digit_code_sent_to">Enter the 4 digit code sent to</string>
 </resources>

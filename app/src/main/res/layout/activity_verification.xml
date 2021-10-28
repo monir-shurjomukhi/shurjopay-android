@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.activity.VerificationActivity">
+
+  <ImageView
+      android:id="@+id/logoImageView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:contentDescription="@string/app_name"
+      android:scaleType="center"
+      android:src="@drawable/ic_shurjopay_logo"
+      app:layout_constraintBottom_toTopOf="@id/descriptionTextView"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <com.google.android.material.textview.MaterialTextView
+      android:id="@+id/descriptionTextView"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="8dp"
+      android:text="@string/enter_the_4_digit_code_sent_to"
+      android:textSize="16sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintBottom_toTopOf="@id/phoneTextView"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <com.google.android.material.textview.MaterialTextView
+      android:id="@+id/phoneTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="32dp"
+      tools:text="01234567890"
+      android:textColor="@color/colorSecondary"
+      android:textSize="16sp"
+      app:layout_constraintBottom_toTopOf="@id/otp1Layout"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/otp1Layout"
+      style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      app:hintEnabled="false"
+      app:layout_constraintBottom_toTopOf="@id/verifyButton"
+      app:layout_constraintEnd_toStartOf="@id/otp2Layout"
+      app:layout_constraintStart_toStartOf="parent">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textSize="16sp" />
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/otp2Layout"
+      style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      android:layout_marginStart="8dp"
+      app:hintEnabled="false"
+      app:layout_constraintBottom_toTopOf="@id/verifyButton"
+      app:layout_constraintEnd_toStartOf="@id/otp3Layout"
+      app:layout_constraintStart_toEndOf="@id/otp1Layout">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textSize="16sp" />
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/otp3Layout"
+      style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      android:layout_marginStart="8dp"
+      app:hintEnabled="false"
+      app:layout_constraintBottom_toTopOf="@id/verifyButton"
+      app:layout_constraintEnd_toStartOf="@id/otp4Layout"
+      app:layout_constraintStart_toEndOf="@id/otp2Layout">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textSize="16sp" />
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/otp4Layout"
+      style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      app:hintEnabled="false"
+      android:layout_marginStart="8dp"
+      app:layout_constraintBottom_toTopOf="@id/verifyButton"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toEndOf="@id/otp3Layout">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textSize="16sp" />
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.button.MaterialButton
+      android:id="@+id/verifyButton"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:padding="16dp"
+      android:text="@string/verify"
+      android:textAllCaps="false"
+      android:textColor="@color/colorAccent"
+      android:textSize="16sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
