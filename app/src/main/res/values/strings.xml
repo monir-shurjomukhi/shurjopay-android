@@ -29,4 +29,9 @@
   <string name="forgot_password"><u>Forgot Password?</u></string>
   <string name="password">Password</string>
   <string name="username">Username</string>
+  <string name="already_have_an_account">Already have an account?</string>
+  <string name="phone_number">Phone Number</string>
+  <string name="retype_password">Retype Password</string>
+  <string name="email">Email</string>
+  <string name="name">Name</string>
 </resources>

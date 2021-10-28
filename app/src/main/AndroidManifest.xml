@@ -17,6 +17,9 @@
       android:usesCleartextTraffic="true"
       tools:replace="android:icon">
     <activity
+        android:name=".ui.activity.RegistrationActivity"
+        android:exported="true" />
+    <activity
         android:name=".ui.activity.SplashActivity"
         android:theme="@style/SplashTheme" />
     <activity android:name=".ui.activity.QRScannerActivity" />
@@ -40,4 +43,5 @@
       </intent-filter>
     </activity>
   </application>
+
 </manifest>
