@@ -18,6 +18,7 @@
       tools:replace="android:icon">
     <activity
         android:name=".ui.activity.RegistrationActivity"
+        android:launchMode="singleTop"
         android:exported="true" />
     <activity
         android:name=".ui.activity.SplashActivity"
@@ -35,6 +36,7 @@
         android:label="@string/title_activity_main" />
     <activity
         android:name=".ui.activity.LoginActivity"
+        android:launchMode="singleTop"
         android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -43,5 +45,4 @@
       </intent-filter>
     </activity>
   </application>
-
 </manifest>
