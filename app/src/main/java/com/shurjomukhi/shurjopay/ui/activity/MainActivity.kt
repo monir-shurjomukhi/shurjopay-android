@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -15,14 +14,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import cards.pay.paycardsrecognizer.sdk.Card
-import cards.pay.paycardsrecognizer.sdk.ScanCardIntent
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.microblink.entities.recognizers.Recognizer
-import com.microblink.entities.recognizers.RecognizerBundle
-import com.microblink.entities.recognizers.blinkcard.BlinkCardRecognizer
-import com.microblink.uisettings.ActivityRunner
-import com.microblink.uisettings.BlinkCardUISettings
 import com.shurjomukhi.shurjopay.R
 
 
@@ -104,10 +96,10 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun scanCard() {
+  /*private fun scanCard() {
     val intent = ScanCardIntent.Builder(this).build()
     startActivityForResult(intent, REQUEST_CODE_SCAN_CARD)
-  }
+  }*/
 
   override fun onActivityResult(
     requestCode: Int,
@@ -118,7 +110,7 @@ class MainActivity : AppCompatActivity() {
     if (requestCode == REQUEST_CODE_SCAN_CARD) {
       when (resultCode) {
         Activity.RESULT_OK -> {
-          val card: Card? = data?.getParcelableExtra(ScanCardIntent.RESULT_PAYCARDS_CARD)
+          /*val card: Card? = data?.getParcelableExtra(ScanCardIntent.RESULT_PAYCARDS_CARD)
 
           val cardData =
             """
@@ -127,7 +119,7 @@ class MainActivity : AppCompatActivity() {
               Card expiration date: ${card?.expirationDate}
               """.trimIndent()
           Log.i(TAG, "Card info: $cardData")
-          Toast.makeText(this, cardData, Toast.LENGTH_LONG).show()
+          Toast.makeText(this, cardData, Toast.LENGTH_LONG).show()*/
         }
         Activity.RESULT_CANCELED -> {
           Log.i(TAG, "Scan canceled")

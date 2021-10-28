@@ -15,7 +15,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
 import com.shurjomukhi.shurjopay.R
@@ -38,7 +37,8 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    mBinding = DataBindingUtil.setContentView(this, R.layout.activity_qr_scanner)
+    mBinding = ActivityQrScannerBinding.inflate(layoutInflater)
+    setContentView(mBinding.root)
 
     mScannerView = ZXingScannerView(this)
     mScannerView.setBorderColor(Color.WHITE)

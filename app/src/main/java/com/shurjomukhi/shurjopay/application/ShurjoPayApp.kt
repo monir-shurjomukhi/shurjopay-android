@@ -1,8 +1,6 @@
 package com.shurjomukhi.shurjopay.application
 
 import android.app.Application
-import com.microblink.MicroblinkSDK
-import com.microblink.intent.IntentDataTransferMode
 
 class ShurjoPayApp : Application() {
   override fun onCreate() {
