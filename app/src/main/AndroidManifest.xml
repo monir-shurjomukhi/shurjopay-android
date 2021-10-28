@@ -17,9 +17,12 @@
       android:usesCleartextTraffic="true"
       tools:replace="android:icon">
     <activity
-        android:name=".ui.activity.RegistrationActivity"
-        android:launchMode="singleTop"
+        android:name=".ui.activity.ForgotPasswordActivity"
         android:exported="true" />
+    <activity
+        android:name=".ui.activity.RegistrationActivity"
+        android:exported="true"
+        android:launchMode="singleTop" />
     <activity
         android:name=".ui.activity.SplashActivity"
         android:theme="@style/SplashTheme" />
@@ -36,8 +39,8 @@
         android:label="@string/title_activity_main" />
     <activity
         android:name=".ui.activity.LoginActivity"
-        android:launchMode="singleTop"
-        android:exported="true">
+        android:exported="true"
+        android:launchMode="singleTop">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
@@ -45,4 +48,5 @@
       </intent-filter>
     </activity>
   </application>
+
 </manifest>

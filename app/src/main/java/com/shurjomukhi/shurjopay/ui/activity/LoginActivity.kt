@@ -18,5 +18,9 @@ class LoginActivity : AppCompatActivity() {
     binding.registerTextView.setOnClickListener {
       startActivity(Intent(this, RegistrationActivity::class.java))
     }
+
+    binding.forgotPasswordTextView.setOnClickListener {
+      startActivity(Intent(this, ForgotPasswordActivity::class.java))
+    }
   }
 }
