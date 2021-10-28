@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@android:color/white" />
+    <item android:drawable="@color/colorShurjoPay" />
     <item>
-        <bitmap android:src="@drawable/ic_qr_scan_2"
+        <bitmap android:src="@drawable/shurjopay"
             android:gravity="center" />
     </item>
 
-    <item android:top="200dp">
+    <!--<item android:top="200dp">
         <bitmap
             android:gravity="center"
             android:src="@drawable/ic_shurjo_pay"/>
-    </item>
+    </item>-->
 </layer-list>

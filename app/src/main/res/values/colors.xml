@@ -7,6 +7,6 @@
   <color name="colorSecondary">#FF3AB6</color>
   <color name="colorSecondaryDark">#FF6BC8</color>
   <color name="colorSecondaryLight">#FF3AB6</color>
-
+  <color name="colorShurjoPay">#EAF2FF</color>
   <color name="actionbar_opacity">#33000000</color>
 </resources>
