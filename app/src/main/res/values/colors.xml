@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="colorPrimary">#5377F0</color>
-  <color name="colorPrimaryDark">#5377F0</color>
-  <color name="colorPrimaryLight">#5377F0</color>
-  <color name="colorAccent">#03DAC5</color>
-  <color name="colorSecondary">#FF3AB6</color>
-  <color name="colorSecondaryDark">#FF6BC8</color>
-  <color name="colorSecondaryLight">#FF3AB6</color>
-  <color name="colorShurjoPay">#EAF2FF</color>
+  <color name="colorPrimary">#009247</color>
+  <color name="colorPrimaryDark">#009247</color>
+  <color name="colorPrimaryLight">#009247</color>
+  <color name="colorAccent">#FFFFFF</color>
+  <color name="colorSecondary">#333493</color>
+  <color name="colorSecondaryDark">#333493</color>
+  <color name="colorSecondaryLight">#333493</color>
+  <color name="colorPink">#FF3AB6</color>
+  <color name="colorLogoBackground">#EAF2FF</color>
   <color name="actionbar_opacity">#33000000</color>
+  <color name="colorEditText">#F1F1F1</color>
 </resources>

@@ -23,4 +23,10 @@
   <string name="payment_successful">Payment Successful</string>
   <string name="your_payment_has_been_successful">Your payment has been successful!</string>
   <string name="ok">OK</string>
+  <string name="don_t_have_account">Don\'t have account?</string>
+  <string name="register">Register</string>
+  <string name="login">Login</string>
+  <string name="forgot_password"><u>Forgot Password?</u></string>
+  <string name="password">Password</string>
+  <string name="username">Username</string>
 </resources>

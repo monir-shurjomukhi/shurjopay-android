@@ -16,7 +16,9 @@
       android:theme="@style/AppTheme"
       android:usesCleartextTraffic="true"
       tools:replace="android:icon">
-
+    <activity
+        android:name=".ui.activity.SplashActivity"
+        android:theme="@style/SplashTheme" />
     <activity android:name=".ui.activity.QRScannerActivity" />
     <activity android:name=".ui.activity.PaymentActivity" />
     <activity
@@ -29,9 +31,8 @@
         android:name=".ui.activity.MainActivity"
         android:label="@string/title_activity_main" />
     <activity
-        android:name=".ui.activity.SplashActivity"
-        android:exported="true"
-        android:theme="@style/SplashTheme">
+        android:name=".ui.activity.LoginActivity"
+        android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
