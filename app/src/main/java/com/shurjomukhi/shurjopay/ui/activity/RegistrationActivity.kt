@@ -26,6 +26,10 @@ class RegistrationActivity : AppCompatActivity() {
     binding.loginTextView.setOnClickListener {
       onBackPressed()
     }
+
+    binding.registerButton.setOnClickListener {
+      startActivity(Intent(this, MainActivity::class.java))
+    }
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
