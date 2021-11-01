@@ -22,9 +22,9 @@ class ApiClient {
       interceptor.level = HttpLoggingInterceptor.Level.BODY
 
       val okHttpClient: OkHttpClient = OkHttpClient.Builder()
-        .connectTimeout(50, TimeUnit.SECONDS)
-        .writeTimeout(50, TimeUnit.SECONDS)
-        .readTimeout(50, TimeUnit.SECONDS)
+        .connectTimeout(60, TimeUnit.SECONDS)
+        .writeTimeout(60, TimeUnit.SECONDS)
+        .readTimeout(60, TimeUnit.SECONDS)
         .addInterceptor(interceptor)
         .build()
 

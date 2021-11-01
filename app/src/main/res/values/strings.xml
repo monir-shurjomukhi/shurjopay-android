@@ -1,10 +1,10 @@
 <resources>
   <string name="app_name">shurjoPay</string>
   <string name="title_activity_main">MainActivity</string>
-  <string name="title_home">HOME</string>
-  <string name="title_transactions">TRANSACTIONS</string>
-  <string name="title_notifications">NOTIFICATIONS</string>
-  <string name="title_profile">PROFILE</string>
+  <string name="title_home">Home</string>
+  <string name="title_transactions">Transactions</string>
+  <string name="title_notifications">Notifications</string>
+  <string name="title_profile">Profile</string>
   <string name="title_dashboard">Dashboard</string>
   <string name="toggle_flash">Flash</string>
   <string name="flash_on">Flash [ON]</string>
