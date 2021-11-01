@@ -19,7 +19,6 @@
         android:contentDescription="@string/app_name"
         android:scaleType="center"
         android:src="@drawable/ic_shurjopay_logo"
-        app:layout_constraintBottom_toTopOf="@id/phoneLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
