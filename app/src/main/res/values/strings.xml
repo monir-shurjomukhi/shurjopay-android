@@ -38,4 +38,7 @@
   <string name="enter_the_phone_number_associated_with_your_account">Enter the phone number associated with your account</string>
   <string name="verify">Verify</string>
   <string name="enter_the_4_digit_code_sent_to">Enter the 4 digit code sent to</string>
+  <string name="transactions">Transactions</string>
+  <string name="pay_bill">Pay Bill</string>
+  <string name="claim_refund">Claim Refund</string>
 </resources>
