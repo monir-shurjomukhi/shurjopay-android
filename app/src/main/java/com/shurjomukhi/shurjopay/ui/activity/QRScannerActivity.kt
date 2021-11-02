@@ -66,12 +66,12 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
   override fun handleResult(rawResult: Result) {
     Log.v(TAG, rawResult.text) // Prints scan results
-    Log.v(
-      TAG, rawResult.barcodeFormat.toString()
-    ) // Prints the scan format (qrcode, pdf417 etc.)
-    Toast.makeText(this, rawResult.text, Toast.LENGTH_SHORT).show()
+    Log.v(TAG, rawResult.barcodeFormat.toString()) // Prints the scan format (qrcode, pdf417 etc.)
 
-    getHtml(rawResult.text)
+    Toast.makeText(this, rawResult.text, Toast.LENGTH_SHORT).show()
+    val intent = Intent(this@QRScannerActivity, PaymentActivity::class.java)
+    intent.putExtra("qrCode", rawResult.text)
+    startActivity(intent)
 
     /*val layoutInflater = LayoutInflater.from(this)
     val view = layoutInflater.inflate(R.layout.dialog_success, null)
@@ -92,23 +92,6 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     alertDialog.setCancelable(false)
     alertDialog.show()*/
-  }
-
-  private fun getHtml(qrData: String) {
-    val qrCode = QrCode(qrData)
-    ApiClient().getApiClient("http://qr.shurjopay.com.bd/")?.create(ApiInterface::class.java)
-      ?.pay(qrCode)?.enqueue(object : Callback<String> {
-        override fun onResponse(call: Call<String>, response: Response<String>) {
-          Log.d(TAG, "onResponse: ${response.body()}")
-          val intent = Intent(this@QRScannerActivity, PaymentActivity::class.java)
-          intent.putExtra("html", response.body())
-          startActivity(intent)
-        }
-
-        override fun onFailure(call: Call<String>, t: Throwable) {
-          Log.e(TAG, "onFailure: ${t.message}", t)
-        }
-      })
   }
 
   override fun finish() {

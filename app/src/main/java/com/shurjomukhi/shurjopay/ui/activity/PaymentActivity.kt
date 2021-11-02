@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.webkit.WebView
 import android.widget.ProgressBar
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import com.shurjomukhi.shurjopay.R
 import android.webkit.WebViewClient
@@ -14,6 +15,12 @@ import android.util.Log
 import android.view.MenuItem
 import android.webkit.WebChromeClient
 import com.shurjomukhi.shurjopay.databinding.ActivityPaymentBinding
+import com.shurjomukhi.shurjopay.model.QrCode
+import com.shurjomukhi.shurjopay.networking.ApiClient
+import com.shurjomukhi.shurjopay.networking.ApiInterface
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class PaymentActivity : AppCompatActivity() {
 
@@ -32,11 +39,35 @@ class PaymentActivity : AppCompatActivity() {
     }
 
     progressDialog = ProgressDialog(this)
-    val html = intent.getStringExtra("html")
-    showWebsite(html)
+    progressDialog.setMessage("Please Wait...")
+    progressDialog.setCancelable(false)
+    val qrCode = intent.getStringExtra("qrCode")
+    getHtml(qrCode.toString())
   }
 
-  private fun showWebsite(html: String?) {
+  private fun getHtml(qrData: String) {
+    progressDialog.show()
+    val qrCode = QrCode(qrData)
+    ApiClient().getApiClient("http://qr.shurjopay.com.bd/")?.create(ApiInterface::class.java)
+      ?.pay(qrCode)?.enqueue(object : Callback<String> {
+        override fun onResponse(call: Call<String>, response: Response<String>) {
+          Log.d(TAG, "onResponse: ${response.body()}")
+          if (progressDialog.isShowing) {
+            progressDialog.dismiss()
+          }
+          showWebsite(response.body().toString())
+        }
+
+        override fun onFailure(call: Call<String>, t: Throwable) {
+          Log.e(TAG, "onFailure: ${t.message}", t)
+          if (progressDialog.isShowing) {
+            progressDialog.dismiss()
+          }
+        }
+      })
+  }
+
+  private fun showWebsite(html: String) {
     binding.webView.settings.javaScriptEnabled = true
     binding.webView.settings.domStorageEnabled = true
     binding.webView.settings.loadsImagesAutomatically = true
