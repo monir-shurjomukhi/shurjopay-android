@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.ImageDecoder
-import android.net.DnsResolver
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -19,49 +18,51 @@ import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
 import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.databinding.ActivityQrScannerBinding
-import com.shurjomukhi.shurjopay.model.QrCode
-import com.shurjomukhi.shurjopay.networking.ApiClient
-import com.shurjomukhi.shurjopay.networking.ApiInterface
 import me.dm7.barcodescanner.zxing.ZXingScannerView
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.io.IOException
 
 class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
-  private lateinit var mBinding: ActivityQrScannerBinding
-  private lateinit var mScannerView: ZXingScannerView
+  private lateinit var binding: ActivityQrScannerBinding
+  private lateinit var scannerView: ZXingScannerView
 
   private lateinit var alertDialog: AlertDialog
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    mBinding = ActivityQrScannerBinding.inflate(layoutInflater)
-    setContentView(mBinding.root)
+    binding = ActivityQrScannerBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
-    mScannerView = ZXingScannerView(this)
-    mScannerView.setBorderColor(Color.WHITE)
-    mScannerView.setIsBorderCornerRounded(true)
-    mScannerView.setBorderCornerRadius(10)
-    mScannerView.setLaserColor(Color.WHITE)
-    mScannerView.setSquareViewFinder(true)
-    mBinding.contentFrame.addView(mScannerView)
+    scannerView = ZXingScannerView(this)
+    scannerView.setBorderColor(Color.WHITE)
+    scannerView.setIsBorderCornerRounded(true)
+    scannerView.setBorderCornerRadius(10)
+    scannerView.setLaserColor(Color.WHITE)
+    scannerView.setSquareViewFinder(true)
+    binding.contentFrame.addView(scannerView)
 
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
     supportActionBar?.title = getString(R.string.scan_to_pay)
+
+    binding.galleryButton.setOnClickListener {
+      pickImage()
+    }
+
+    binding.lightButton.setOnClickListener {
+      scannerView.toggleFlash()
+    }
   }
 
   override fun onResume() {
     super.onResume()
-    mScannerView.setResultHandler(this) // Register ourselves as a handler for scan results.
-    mScannerView.startCamera() // Start camera on resume
+    scannerView.setResultHandler(this) // Register ourselves as a handler for scan results.
+    scannerView.startCamera() // Start camera on resume
     //mScannerView.flash = true
   }
 
   override fun onPause() {
     super.onPause()
-    mScannerView.stopCamera() // Stop camera on pause
+    scannerView.stopCamera() // Stop camera on pause
   }
 
   override fun handleResult(rawResult: Result) {
@@ -69,7 +70,7 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     Log.v(TAG, rawResult.barcodeFormat.toString()) // Prints the scan format (qrcode, pdf417 etc.)
 
     Toast.makeText(this, rawResult.text, Toast.LENGTH_SHORT).show()
-    val intent = Intent(this@QRScannerActivity, PaymentActivity::class.java)
+    val intent = Intent(this, PaymentActivity::class.java)
     intent.putExtra("qrCode", rawResult.text)
     startActivity(intent)
 
@@ -114,11 +115,7 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     private const val CODE_SELECT_PHOTO = 111
   }
 
-  fun toggleFlash(view: View) {
-    mScannerView.toggleFlash()
-  }
-
-  fun pickImage(view: View) {
+  private fun pickImage() {
     //ImagePicker.create(this).showCamera(false).start()
 
     val photoPickerIntent = Intent(Intent.ACTION_PICK)
@@ -179,11 +176,11 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
   }
 
   private fun decodeQR(bitmap: Bitmap?) {
-    var contents: String
+    val contents: String
 
     if (bitmap != null) {
       try {
-        var intArray = IntArray(bitmap.width * bitmap.height)
+        val intArray = IntArray(bitmap.width * bitmap.height)
         //copy pixel data from the Bitmap into the 'intArray' array
         bitmap.getPixels(intArray, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
 
@@ -205,5 +202,3 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     }
   }
 }
-
-
