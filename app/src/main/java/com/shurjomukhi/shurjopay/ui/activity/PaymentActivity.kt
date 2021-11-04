@@ -43,7 +43,8 @@ class PaymentActivity : AppCompatActivity() {
 
     viewModel = ViewModelProvider(this).get(PaymentViewModel::class.java)
     progressDialog = ProgressDialog(this)
-    val qrCode = intent.getStringExtra("qrCode")
+    progressDialog.setMessage("Please Wait...")
+    progressDialog.setCancelable(false)
 
     viewModel.progress.observe(this, {
       if (it) {
@@ -52,11 +53,11 @@ class PaymentActivity : AppCompatActivity() {
         hideProgress()
       }
     })
-
     viewModel.html.observe(this, {
       showWebsite(it)
     })
 
+    val qrCode = intent.getStringExtra("qrCode")
     viewModel.getHtml(qrCode.toString())
   }
 
@@ -64,7 +65,7 @@ class PaymentActivity : AppCompatActivity() {
     binding.webView.settings.javaScriptEnabled = true
     binding.webView.settings.domStorageEnabled = true
     binding.webView.settings.loadsImagesAutomatically = true
-    binding.webView.loadDataWithBaseURL(null, html!!, "text/html", "UTF-8", null)
+    binding.webView.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null)
     binding.webView.webViewClient = object : WebViewClient() {
       override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
         Log.d(TAG, "shouldOverrideUrlLoading: url = $url")
@@ -83,8 +84,6 @@ class PaymentActivity : AppCompatActivity() {
   }
 
   private fun showProgress() {
-    progressDialog.setMessage("Please Wait...")
-    progressDialog.setCancelable(false)
     progressDialog.show()
   }
 

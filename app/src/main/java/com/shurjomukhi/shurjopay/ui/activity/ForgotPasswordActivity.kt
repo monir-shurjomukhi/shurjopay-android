@@ -1,5 +1,6 @@
 package com.shurjomukhi.shurjopay.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -19,6 +20,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
     if (supportActionBar != null) {
       supportActionBar!!.setDisplayHomeAsUpEnabled(true)
       supportActionBar!!.setDisplayShowHomeEnabled(true)
+    }
+
+    binding.forgotPasswordButton.setOnClickListener {
+      startActivity(Intent(this, VerificationActivity::class.java))
     }
   }
 
