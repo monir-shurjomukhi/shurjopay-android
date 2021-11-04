@@ -27,7 +27,7 @@ interface ApiInterface {
   //////////////////// POST ///////////////////
 
   @POST("info")
-  fun pay(
+  fun getHtml(
     @Body qrCode: QrCode
   ): Call<String>
 

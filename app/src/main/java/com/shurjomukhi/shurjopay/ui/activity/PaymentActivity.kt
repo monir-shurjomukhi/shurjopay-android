@@ -14,10 +14,12 @@ import android.net.http.SslError
 import android.util.Log
 import android.view.MenuItem
 import android.webkit.WebChromeClient
+import androidx.lifecycle.ViewModelProvider
 import com.shurjomukhi.shurjopay.databinding.ActivityPaymentBinding
 import com.shurjomukhi.shurjopay.model.QrCode
 import com.shurjomukhi.shurjopay.networking.ApiClient
 import com.shurjomukhi.shurjopay.networking.ApiInterface
+import com.shurjomukhi.shurjopay.ui.viewmodel.PaymentViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +27,7 @@ import retrofit2.Response
 class PaymentActivity : AppCompatActivity() {
 
   private lateinit var binding: ActivityPaymentBinding
+  private lateinit var viewModel: PaymentViewModel
   private lateinit var progressDialog: ProgressDialog
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,33 +41,23 @@ class PaymentActivity : AppCompatActivity() {
       supportActionBar!!.setDisplayShowHomeEnabled(true)
     }
 
+    viewModel = ViewModelProvider(this).get(PaymentViewModel::class.java)
     progressDialog = ProgressDialog(this)
-    progressDialog.setMessage("Please Wait...")
-    progressDialog.setCancelable(false)
     val qrCode = intent.getStringExtra("qrCode")
-    getHtml(qrCode.toString())
-  }
 
-  private fun getHtml(qrData: String) {
-    progressDialog.show()
-    val qrCode = QrCode(qrData)
-    ApiClient().getApiClient("http://qr.shurjopay.com.bd/")?.create(ApiInterface::class.java)
-      ?.pay(qrCode)?.enqueue(object : Callback<String> {
-        override fun onResponse(call: Call<String>, response: Response<String>) {
-          Log.d(TAG, "onResponse: ${response.body()}")
-          if (progressDialog.isShowing) {
-            progressDialog.dismiss()
-          }
-          showWebsite(response.body().toString())
-        }
+    viewModel.progress.observe(this, {
+      if (it) {
+        showProgress()
+      } else {
+        hideProgress()
+      }
+    })
 
-        override fun onFailure(call: Call<String>, t: Throwable) {
-          Log.e(TAG, "onFailure: ${t.message}", t)
-          if (progressDialog.isShowing) {
-            progressDialog.dismiss()
-          }
-        }
-      })
+    viewModel.html.observe(this, {
+      showWebsite(it)
+    })
+
+    viewModel.getHtml(qrCode.toString())
   }
 
   private fun showWebsite(html: String) {
