@@ -14,14 +14,6 @@ class CardScannerActivity : AppCompatActivity() {
     //supportActionBar?.title = getString(R.string.scan_to_pay)
   }
 
-  override fun onResume() {
-    super.onResume()
-  }
-
-  override fun onPause() {
-    super.onPause()
-  }
-
   override fun finish() {
     super.finish()
     overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom)
