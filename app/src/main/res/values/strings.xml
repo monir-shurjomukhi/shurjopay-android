@@ -42,4 +42,6 @@
   <string name="pay_bill">Pay Bill</string>
   <string name="claim_refund">Claim Refund</string>
   <string name="unable_to_connect">Unable To Connect</string>
+  <string name="registration_successful_please_login">Registration Successful! Please Login</string>
+  <string name="your_mobile_number_is_already_in_use">Your mobile number is already in use!</string>
 </resources>
