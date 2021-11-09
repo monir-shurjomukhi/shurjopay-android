@@ -12,13 +12,12 @@ open class BaseActivity: AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
     super.onCreate(savedInstanceState, persistentState)
-
-    progressDialog = ProgressDialog(this)
-    progressDialog.setMessage("Please Wait...")
-    progressDialog.setCancelable(false)
   }
 
   protected fun showProgress() {
+    progressDialog = ProgressDialog(this)
+    progressDialog.setMessage("Please Wait...")
+    progressDialog.setCancelable(false)
     progressDialog.show()
   }
 

@@ -1,13 +1,11 @@
 package com.shurjomukhi.shurjopay.ui.activity
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.shurjomukhi.shurjopay.R
-import com.shurjomukhi.shurjopay.databinding.ActivityLoginBinding
 import com.shurjomukhi.shurjopay.databinding.ActivityRegistrationBinding
+import com.shurjomukhi.shurjopay.model.Registration
 import com.shurjomukhi.shurjopay.ui.viewmodel.RegistrationViewModel
 
 class RegistrationActivity : BaseActivity() {
@@ -33,7 +31,7 @@ class RegistrationActivity : BaseActivity() {
     }
 
     binding.registerButton.setOnClickListener {
-      startActivity(Intent(this, MainActivity::class.java))
+      register()
     }
 
     viewModel.progress.observe(this, {
@@ -51,12 +49,54 @@ class RegistrationActivity : BaseActivity() {
     viewModel.registration.observe(this, {
       it.let {
         if (it.message.equals("1")) {
-          shortSnack(binding.root, R.string.unable_to_connect)
+          shortSnack(binding.root, R.string.registration_successful_please_login)
         } else if (it.message.equals("0")) {
           shortSnack(binding.root, R.string.your_mobile_number_is_already_in_use)
         }
       }
     })
+  }
+
+  private fun register() {
+    val name = binding.nameLayout.editText?.text.toString()
+    val email = binding.emailLayout.editText?.text.toString()
+    val phone = binding.phoneLayout.editText?.text.toString()
+    val password = binding.passwordLayout.editText?.text.toString()
+    val retypePassword = binding.retypePasswordLayout.editText?.text.toString()
+
+    if (name.isEmpty()) {
+      binding.nameLayout.error = getString(R.string.this_field_is_mandatory)
+      return
+    } else {
+      binding.nameLayout.error = null
+    }
+    if (phone.isEmpty()) {
+      binding.phoneLayout.error = getString(R.string.this_field_is_mandatory)
+      return
+    } else {
+      binding.phoneLayout.error = null
+    }
+    if (password.isEmpty()) {
+      binding.passwordLayout.error = getString(R.string.this_field_is_mandatory)
+      return
+    } else {
+      binding.passwordLayout.error = null
+    }
+    if (retypePassword.isEmpty()) {
+      binding.retypePasswordLayout.error = getString(R.string.this_field_is_mandatory)
+      return
+    } else {
+      binding.retypePasswordLayout.error = null
+    }
+    if (retypePassword != password) {
+      binding.retypePasswordLayout.error = getString(R.string.passwords_did_not_match)
+      return
+    } else {
+      binding.retypePasswordLayout.error = null
+    }
+
+    val registration = Registration(name, email, phone, password, retypePassword, null)
+    viewModel.register(registration)
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {

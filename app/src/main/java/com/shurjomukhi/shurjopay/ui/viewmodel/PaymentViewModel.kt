@@ -4,7 +4,6 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.zxing.qrcode.encoder.QRCode
 import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.model.QrCode
 import retrofit2.Call
@@ -19,7 +18,7 @@ class PaymentViewModel(application: Application) : BaseViewModel(application) {
   fun getHtml(qrData: String) {
     progress.value = true
     val qrCode = QrCode(qrData)
-    apiClient?.getHtml(qrCode)?.enqueue(object : Callback<String>{
+    apiClientQR?.getHtml(qrCode)?.enqueue(object : Callback<String>{
       override fun onResponse(call: Call<String>, response: Response<String>) {
         if (response.isSuccessful) {
           _html.value = response.body()

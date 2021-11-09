@@ -4,9 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.zxing.qrcode.encoder.QRCode
 import com.shurjomukhi.shurjopay.R
-import com.shurjomukhi.shurjopay.model.QrCode
 import com.shurjomukhi.shurjopay.model.Registration
 import retrofit2.Call
 import retrofit2.Callback

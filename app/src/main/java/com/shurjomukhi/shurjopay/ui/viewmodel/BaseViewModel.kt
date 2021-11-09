@@ -10,5 +10,6 @@ open class BaseViewModel(application: Application) : AndroidViewModel(applicatio
   val progress = MutableLiveData<Boolean>()
   val message = MutableLiveData<Int>()
   //val preference = VetPreference(application)
-  val apiClient = ApiClient().getApiClient("http://qr.shurjopay.com.bd/")?.create(ApiInterface::class.java)
+  val apiClient = ApiClient().getApiClient("https://engine.shurjopayment.com/api/")?.create(ApiInterface::class.java)
+  val apiClientQR = ApiClient().getApiClient("http://qr.shurjopay.com.bd/")?.create(ApiInterface::class.java)
 }
