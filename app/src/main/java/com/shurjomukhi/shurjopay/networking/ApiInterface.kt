@@ -1,6 +1,7 @@
 package com.shurjomukhi.shurjopay.networking
 
 import com.shurjomukhi.shurjopay.model.QrCode
+import com.shurjomukhi.shurjopay.model.Registration
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -30,6 +31,11 @@ interface ApiInterface {
   fun getHtml(
     @Body qrCode: QrCode
   ): Call<String>
+
+  @POST("customer-register")
+  fun register(
+    @Body registration: Registration
+  ): Call<Registration>
 
   /*@POST("customers")
   fun signUp(
