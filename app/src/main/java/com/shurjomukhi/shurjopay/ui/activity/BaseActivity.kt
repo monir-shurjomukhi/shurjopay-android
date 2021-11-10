@@ -34,4 +34,8 @@ open class BaseActivity: AppCompatActivity() {
   protected fun longSnack(view: View, message: Int) {
     Snackbar.make(view, getString(message), Snackbar.LENGTH_LONG).show()
   }
+
+  protected fun actionSnack(view: View, message: Int, action: Int, listener: View.OnClickListener) {
+    Snackbar.make(view, getString(message), Snackbar.LENGTH_INDEFINITE).setAction(action, listener).show()
+  }
 }

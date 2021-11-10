@@ -2,6 +2,7 @@ package com.shurjomukhi.shurjopay.ui.activity
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.databinding.ActivityRegistrationBinding
@@ -49,7 +50,11 @@ class RegistrationActivity : BaseActivity() {
     viewModel.registration.observe(this, {
       it.let {
         if (it.message.equals("1")) {
-          shortSnack(binding.root, R.string.registration_successful_please_login)
+          actionSnack(binding.root, R.string.registration_successful, R.string.login, object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+              onBackPressed()
+            }
+          })
         } else if (it.message.equals("0")) {
           shortSnack(binding.root, R.string.your_mobile_number_is_already_in_use)
         }
@@ -65,25 +70,31 @@ class RegistrationActivity : BaseActivity() {
     val retypePassword = binding.retypePasswordLayout.editText?.text.toString()
 
     if (name.isEmpty()) {
-      binding.nameLayout.error = getString(R.string.this_field_is_mandatory)
+      binding.nameLayout.error = getString(R.string.this_field_is_required)
       return
     } else {
       binding.nameLayout.error = null
     }
     if (phone.isEmpty()) {
-      binding.phoneLayout.error = getString(R.string.this_field_is_mandatory)
+      binding.phoneLayout.error = getString(R.string.this_field_is_required)
+      return
+    } else {
+      binding.phoneLayout.error = null
+    }
+    if (phone.length != 11) {
+      binding.phoneLayout.error = getString(R.string.this_field_is_required)
       return
     } else {
       binding.phoneLayout.error = null
     }
     if (password.isEmpty()) {
-      binding.passwordLayout.error = getString(R.string.this_field_is_mandatory)
+      binding.passwordLayout.error = getString(R.string.this_field_is_required)
       return
     } else {
       binding.passwordLayout.error = null
     }
     if (retypePassword.isEmpty()) {
-      binding.retypePasswordLayout.error = getString(R.string.this_field_is_mandatory)
+      binding.retypePasswordLayout.error = getString(R.string.this_field_is_required)
       return
     } else {
       binding.retypePasswordLayout.error = null
