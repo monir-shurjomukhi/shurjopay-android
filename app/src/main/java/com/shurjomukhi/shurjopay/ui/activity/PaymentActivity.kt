@@ -24,11 +24,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PaymentActivity : AppCompatActivity() {
+class PaymentActivity : BaseActivity() {
 
   private lateinit var binding: ActivityPaymentBinding
   private lateinit var viewModel: PaymentViewModel
-  private lateinit var progressDialog: ProgressDialog
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -42,9 +41,6 @@ class PaymentActivity : AppCompatActivity() {
     }
 
     viewModel = ViewModelProvider(this).get(PaymentViewModel::class.java)
-    progressDialog = ProgressDialog(this)
-    progressDialog.setMessage("Please Wait...")
-    progressDialog.setCancelable(false)
 
     viewModel.progress.observe(this, {
       if (it) {
@@ -52,6 +48,10 @@ class PaymentActivity : AppCompatActivity() {
       } else {
         hideProgress()
       }
+    })
+    viewModel.message.observe(this, {
+      shortToast(it)
+      if (it == R.string.unable_to_connect) onBackPressed()
     })
     viewModel.html.observe(this, {
       showWebsite(it)
@@ -80,16 +80,6 @@ class PaymentActivity : AppCompatActivity() {
       override fun onProgressChanged(view: WebView, newProgress: Int) {
         binding.progressBar.progress = newProgress
       }
-    }
-  }
-
-  private fun showProgress() {
-    progressDialog.show()
-  }
-
-  private fun hideProgress() {
-    if (progressDialog.isShowing) {
-      progressDialog.dismiss()
     }
   }
 

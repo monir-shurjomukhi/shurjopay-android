@@ -21,7 +21,7 @@ import com.shurjomukhi.shurjopay.databinding.ActivityQrScannerBinding
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 import java.io.IOException
 
-class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
+class QRScannerActivity : BaseActivity(), ZXingScannerView.ResultHandler {
 
   private lateinit var binding: ActivityQrScannerBinding
   private lateinit var scannerView: ZXingScannerView
@@ -191,14 +191,14 @@ class QRScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         val result = reader.decode(newBitmap)
         contents = result.text
         Log.d(TAG, "decodeQR: contents = $contents")
-        Toast.makeText(this, contents, Toast.LENGTH_LONG).show()
+        shortToast(contents)
       } catch (e: Exception) {
         Log.e(TAG, "decodeQR: " + e.message, e)
-        Toast.makeText(this, "No Data Found!", Toast.LENGTH_SHORT).show()
+        shortToast("No Data Found!")
       }
     } else {
       Log.e(TAG, "decodeQR: Can't decode picture!")
-      Toast.makeText(this, "Can't decode picture!", Toast.LENGTH_SHORT).show()
+      shortToast("Can't decode picture!")
     }
   }
 }

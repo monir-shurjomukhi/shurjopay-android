@@ -4,11 +4,15 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.model.QrCode
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.HttpException
 import retrofit2.Response
+import java.lang.Exception
 
 class PaymentViewModel(application: Application) : BaseViewModel(application) {
   private val _html = MutableLiveData<String>()
@@ -16,25 +20,31 @@ class PaymentViewModel(application: Application) : BaseViewModel(application) {
     get() = _html
 
   fun getHtml(qrData: String) {
-    progress.value = true
-    val qrCode = QrCode(qrData)
-    apiClientQR?.getHtml(qrCode)?.enqueue(object : Callback<String>{
-      override fun onResponse(call: Call<String>, response: Response<String>) {
-        if (response.isSuccessful) {
-          _html.value = response.body()
-        } else {
-          message.value = R.string.unable_to_connect
-        }
+    viewModelScope.launch {
+      progress.value = true
 
+      val response = try {
+        val qrCode = QrCode(qrData)
+        apiClientQR.getHtml(qrCode)
+      } catch (e: Exception) {
+        Log.e(TAG, "register: ${e.message}", e)
         progress.value = false
-      }
-
-      override fun onFailure(call: Call<String>, t: Throwable) {
-        Log.e(TAG, "onFailure: ${t.message}", t)
         message.value = R.string.unable_to_connect
+        return@launch
+      } catch (e: HttpException) {
+        Log.e(TAG, "register: ${e.message}", e)
         progress.value = false
+        message.value = R.string.unable_to_connect
+        return@launch
       }
-    })
+
+      progress.value = false
+      if (response.isSuccessful && response.body() != null) {
+        _html.value = response.body()
+      } else {
+        message.value = R.string.unable_to_connect
+      }
+    }
   }
 
   companion object {

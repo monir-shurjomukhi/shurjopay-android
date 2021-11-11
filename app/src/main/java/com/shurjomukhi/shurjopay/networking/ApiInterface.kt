@@ -29,42 +29,12 @@ interface ApiInterface {
   //////////////////// POST ///////////////////
 
   @POST("info")
-  fun getHtml(
+  suspend fun getHtml(
     @Body qrCode: QrCode
-  ): Call<String>
+  ): Response<String>
 
   @POST("customer-register")
   suspend fun register(
     @Body registration: Registration
   ): Response<Registration>
-
-  /*@POST("customers")
-  fun signUp(
-    @Body signUp: SignUpData
-  ): Call<SignUp>
-
-  @POST("verify_input_code")
-  fun verifyOtp(
-    @Body otpData: OtpData
-  ): Call<String>
-
-  @POST("update_customer_logins")
-  fun updateLogin(
-    @Body updateLogin: UpdateLogin
-  ): Call<UpdateLogin>
-
-  @POST("auth/login")
-  fun login(
-    @Body login: Login
-  ): Call<String>
-
-  @POST("agentRegistrationFromWeb")
-  fun registerAgent(
-    @Body agentRegistrationData: AgentRegistrationData
-  ): Call<AgentRegistration>
-
-  @POST("breedOfAnimals/typeOfBreeds")
-  fun getAnimalBreed(
-    @Body breed: Breed
-  ): Call<Breed>*/
 }

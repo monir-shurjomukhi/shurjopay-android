@@ -44,24 +44,6 @@ class RegistrationViewModel(application: Application) : BaseViewModel(applicatio
         message.value = R.string.unable_to_connect
       }
     }
-
-    /*apiClient?.register(registration)?.enqueue(object : Callback<Registration> {
-      override fun onResponse(call: Call<Registration>, response: Response<Registration>) {
-        if (response.isSuccessful) {
-          _registration.value = response.body()
-        } else {
-          message.value = R.string.unable_to_connect
-        }
-
-        progress.value = false
-      }
-
-      override fun onFailure(call: Call<Registration>, t: Throwable) {
-        Log.e(TAG, "onFailure: ${t.message}", t)
-        message.value = R.string.unable_to_connect
-        progress.value = false
-      }
-    })*/
   }
 
   companion object {
