@@ -49,4 +49,6 @@
   <string name="this_field_is_required">This field is required</string>
   <string name="mobile_number_is_invalid">Mobile number is invalid</string>
   <string name="passwords_did_not_match">Passwords did not match</string>
+  <string name="please_enter_6_digit_otp">Please enter 6 digit OTP</string>
+  <string name="otp_did_not_match">OTP did not match!</string>
 </resources>
