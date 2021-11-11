@@ -3,6 +3,7 @@ package com.shurjomukhi.shurjopay.networking
 import com.shurjomukhi.shurjopay.model.QrCode
 import com.shurjomukhi.shurjopay.model.Registration
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiInterface {
@@ -33,9 +34,9 @@ interface ApiInterface {
   ): Call<String>
 
   @POST("customer-register")
-  fun register(
+  suspend fun register(
     @Body registration: Registration
-  ): Call<Registration>
+  ): Response<Registration>
 
   /*@POST("customers")
   fun signUp(

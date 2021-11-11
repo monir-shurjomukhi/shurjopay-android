@@ -9,7 +9,11 @@ import com.shurjomukhi.shurjopay.networking.ApiInterface
 open class BaseViewModel(application: Application) : AndroidViewModel(application) {
   val progress = MutableLiveData<Boolean>()
   val message = MutableLiveData<Int>()
+
   //val preference = VetPreference(application)
-  val apiClient = ApiClient().getApiClient("https://engine.shurjopayment.com/api/")?.create(ApiInterface::class.java)
-  val apiClientQR = ApiClient().getApiClient("http://qr.shurjopay.com.bd/")?.create(ApiInterface::class.java)
+  val apiClient: ApiInterface =
+    ApiClient().getApiClient("https://engine.shurjopayment.com/api/")
+      .create(ApiInterface::class.java)
+  val apiClientQR: ApiInterface =
+    ApiClient().getApiClient("http://qr.shurjopay.com.bd/").create(ApiInterface::class.java)
 }

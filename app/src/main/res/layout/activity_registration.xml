@@ -76,6 +76,7 @@
       <com.google.android.material.textfield.TextInputEditText
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:maxLength="11"
           android:inputType="phone"
           android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>

@@ -50,13 +50,9 @@ class RegistrationActivity : BaseActivity() {
     viewModel.registration.observe(this, {
       it.let {
         if (it.message.equals("1")) {
-          actionSnack(binding.root, R.string.registration_successful, R.string.login, object : View.OnClickListener {
-            override fun onClick(p0: View?) {
-              onBackPressed()
-            }
-          })
+          actionSnack(binding.root, R.string.registration_successful, R.string.login) { onBackPressed() }
         } else if (it.message.equals("0")) {
-          shortSnack(binding.root, R.string.your_mobile_number_is_already_in_use)
+          actionSnack(binding.root, R.string.you_are_already_registered, R.string.login) { onBackPressed() }
         }
       }
     })
@@ -82,7 +78,7 @@ class RegistrationActivity : BaseActivity() {
       binding.phoneLayout.error = null
     }
     if (phone.length != 11) {
-      binding.phoneLayout.error = getString(R.string.this_field_is_required)
+      binding.phoneLayout.error = getString(R.string.mobile_number_is_invalid)
       return
     } else {
       binding.phoneLayout.error = null

@@ -45,7 +45,8 @@
   <string name="registration_successful_please_login">Registration Successful! Please Login</string>
   <string name="registration_successful">Registration Successful!</string>
   <string name="your_mobile_number_is_already_in_use">Your mobile number is already in use!</string>
+  <string name="you_are_already_registered">You are already registered</string>
   <string name="this_field_is_required">This field is required</string>
-  <string name="mobile_number_is_required">Mobile number is invalid</string>
+  <string name="mobile_number_is_invalid">Mobile number is invalid</string>
   <string name="passwords_did_not_match">Passwords did not match</string>
 </resources>

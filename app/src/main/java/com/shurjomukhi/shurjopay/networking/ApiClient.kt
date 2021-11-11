@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 class ApiClient {
   private var retrofit: Retrofit? = null
 
-  fun getApiClient(baseUrl: String): Retrofit? {
+  fun getApiClient(baseUrl: String): Retrofit {
     if (retrofit == null) {
       val interceptor = HttpLoggingInterceptor()
       interceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -37,7 +37,8 @@ class ApiClient {
         .client(okHttpClient)
         .build()
     }
-    return retrofit
+
+    return retrofit!!
   }
 
   fun getAuthApiClient(baseUrl: String, token: String): Retrofit? {
@@ -69,6 +70,7 @@ class ApiClient {
         .client(okHttpClient)
         .build()
     }
-    return retrofit
+
+    return retrofit!!
   }
 }
