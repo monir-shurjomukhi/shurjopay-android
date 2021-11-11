@@ -1,12 +1,9 @@
 package com.shurjomukhi.shurjopay.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.databinding.ActivityVerificationBinding
 
 class VerificationActivity : AppCompatActivity() {
@@ -24,14 +21,16 @@ class VerificationActivity : AppCompatActivity() {
       supportActionBar!!.setDisplayShowHomeEnabled(true)
     }
 
+    binding.otp1Layout.editText?.requestFocus()
+
     binding.otp1Layout.editText?.doOnTextChanged { text, start, before, count ->
-      if (text.toString().isNotEmpty()) {
+      if (count != 0) {
         binding.otp2Layout.editText?.requestFocus()
       }
     }
 
     binding.otp2Layout.editText?.doOnTextChanged { text, start, before, count ->
-      if (text.toString().isEmpty()) {
+      if (count == 0) {
         binding.otp1Layout.editText?.requestFocus()
       } else {
         binding.otp3Layout.editText?.requestFocus()
@@ -39,7 +38,7 @@ class VerificationActivity : AppCompatActivity() {
     }
 
     binding.otp3Layout.editText?.doOnTextChanged { text, start, before, count ->
-      if (text.toString().isEmpty()) {
+      if (count == 0) {
         binding.otp2Layout.editText?.requestFocus()
       } else {
         binding.otp4Layout.editText?.requestFocus()
@@ -47,8 +46,24 @@ class VerificationActivity : AppCompatActivity() {
     }
 
     binding.otp4Layout.editText?.doOnTextChanged { text, start, before, count ->
-      if (text.toString().isEmpty()) {
+      if (count == 0) {
         binding.otp3Layout.editText?.requestFocus()
+      } else {
+        binding.otp5Layout.editText?.requestFocus()
+      }
+    }
+
+    binding.otp5Layout.editText?.doOnTextChanged { text, start, before, count ->
+      if (count == 0) {
+        binding.otp4Layout.editText?.requestFocus()
+      } else {
+        binding.otp6Layout.editText?.requestFocus()
+      }
+    }
+
+    binding.otp6Layout.editText?.doOnTextChanged { text, start, before, count ->
+      if (count == 0) {
+        binding.otp5Layout.editText?.requestFocus()
       }
     }
   }

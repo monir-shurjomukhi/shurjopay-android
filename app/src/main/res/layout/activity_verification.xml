@@ -28,7 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:text="@string/enter_the_4_digit_code_sent_to"
+        android:text="@string/enter_the_6_digit_code_sent_to"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -121,8 +121,54 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         app:hintEnabled="false"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/otp5Layout"
         app:layout_constraintStart_toEndOf="@id/otp3Layout"
+        app:layout_constraintTop_toBottomOf="@id/phoneTextView">
+
+      <com.google.android.material.textfield.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:inputType="number"
+          android:maxLength="1"
+          android:textSize="16sp"
+          android:textStyle="bold"
+          tools:text="8" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/otp5Layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toStartOf="@id/otp6Layout"
+        app:layout_constraintStart_toEndOf="@id/otp4Layout"
+        app:layout_constraintTop_toBottomOf="@id/phoneTextView">
+
+      <com.google.android.material.textfield.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:inputType="number"
+          android:maxLength="1"
+          android:textSize="16sp"
+          android:textStyle="bold"
+          tools:text="8" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/otp6Layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/otp5Layout"
         app:layout_constraintTop_toBottomOf="@id/phoneTextView">
 
       <com.google.android.material.textfield.TextInputEditText

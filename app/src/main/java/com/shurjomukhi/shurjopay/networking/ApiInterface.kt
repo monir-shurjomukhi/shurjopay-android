@@ -2,9 +2,9 @@ package com.shurjomukhi.shurjopay.networking
 
 import com.shurjomukhi.shurjopay.model.QrCode
 import com.shurjomukhi.shurjopay.model.Registration
-import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.POST
 
 interface ApiInterface {
 
