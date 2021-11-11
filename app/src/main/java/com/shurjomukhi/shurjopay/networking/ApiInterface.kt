@@ -1,5 +1,6 @@
 package com.shurjomukhi.shurjopay.networking
 
+import com.shurjomukhi.shurjopay.model.Otp
 import com.shurjomukhi.shurjopay.model.QrCode
 import com.shurjomukhi.shurjopay.model.Registration
 import retrofit2.Response
@@ -37,4 +38,9 @@ interface ApiInterface {
   suspend fun register(
     @Body registration: Registration
   ): Response<Registration>
+
+  @POST("verify-otp")
+  suspend fun verifyOTP(
+    @Body otp: Otp
+  ): Response<Otp>
 }
