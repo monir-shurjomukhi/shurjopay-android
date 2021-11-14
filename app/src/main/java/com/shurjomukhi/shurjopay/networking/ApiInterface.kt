@@ -1,5 +1,6 @@
 package com.shurjomukhi.shurjopay.networking
 
+import com.shurjomukhi.shurjopay.model.Login
 import com.shurjomukhi.shurjopay.model.Otp
 import com.shurjomukhi.shurjopay.model.QrCode
 import com.shurjomukhi.shurjopay.model.Registration
@@ -43,4 +44,9 @@ interface ApiInterface {
   suspend fun verifyOTP(
     @Body otp: Otp
   ): Response<Otp>
+
+  @POST("customer-login")
+  suspend fun login(
+    @Body login: Login
+  ): Response<Login>
 }
