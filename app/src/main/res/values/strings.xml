@@ -51,4 +51,8 @@
   <string name="passwords_did_not_match">Passwords did not match</string>
   <string name="please_enter_6_digit_otp">Please enter 6 digit OTP</string>
   <string name="otp_did_not_match">OTP did not match!</string>
+  <string name="mobile_number_or_password_did_not_match">Mobile number or password did not match!</string>
+  <string name="you_do_not_have_an_account">You do not have an account!</string>
+  <string name="your_account_is_not_active">Your account is not active!</string>
+  <string name="activate">Activate</string>
 </resources>

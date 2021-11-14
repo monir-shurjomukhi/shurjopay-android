@@ -83,6 +83,18 @@ class VerificationActivity : BaseActivity() {
       verifyOTP()
     }
 
+    viewModel.progress.observe(this, {
+      if (it) {
+        showProgress()
+      } else {
+        hideProgress()
+      }
+    })
+
+    viewModel.message.observe(this, {
+      shortSnack(binding.root, it)
+    })
+
     viewModel.otp.observe(this, {
       if (it.message.equals("1")) {
         actionSnack(binding.root, R.string.registration_successful, R.string.login) {
