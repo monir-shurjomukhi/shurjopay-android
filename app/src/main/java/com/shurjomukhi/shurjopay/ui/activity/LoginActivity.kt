@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.databinding.ActivityLoginBinding
+import com.shurjomukhi.shurjopay.model.ForgotPassword
 import com.shurjomukhi.shurjopay.model.Login
 import com.shurjomukhi.shurjopay.ui.viewmodel.LoginViewModel
 
@@ -44,18 +45,29 @@ class LoginActivity : BaseActivity() {
       shortSnack(binding.root, it)
     })
     viewModel.login.observe(this, {
+      when {
+        it.message.equals("1") -> {
+          startActivity(Intent(this, MainActivity::class.java))
+        }
+        it.message.equals("2") -> {
+          shortSnack(binding.root, R.string.mobile_number_or_password_did_not_match)
+        }
+        it.message.equals("3") -> {
+          actionSnack(binding.root, R.string.you_do_not_have_an_account, R.string.register) {
+            startActivity(Intent(this, RegistrationActivity::class.java))
+          }
+        }
+        it.message.equals("0") -> {
+          actionSnack(binding.root, R.string.your_account_is_not_active, R.string.activate) {
+            //startActivity(Intent(this, LoginActivity::class.java))
+            activate()
+          }
+        }
+      }
+    })
+    viewModel.forgotPassword.observe(this, {
       if (it.message.equals("1")) {
-        startActivity(Intent(this, MainActivity::class.java))
-      } else if (it.message.equals("2")) {
-        shortSnack(binding.root, R.string.mobile_number_or_password_did_not_match)
-      } else if (it.message.equals("3")) {
-        actionSnack(binding.root, R.string.you_do_not_have_an_account, R.string.register) {
-          startActivity(Intent(this, RegistrationActivity::class.java))
-        }
-      } else if (it.message.equals("0")) {
-        actionSnack(binding.root, R.string.your_account_is_not_active, R.string.activate) {
-          //startActivity(Intent(this, LoginActivity::class.java))
-        }
+        val intent = Intent(this, VerificationActivity::class.java)
       }
     })
   }
@@ -88,6 +100,8 @@ class LoginActivity : BaseActivity() {
   }
 
   private fun activate() {
+    val forgotPassword = ForgotPassword(binding.phoneLayout.editText?.text.toString(), null)
 
+    viewModel.forgotPassword(forgotPassword)
   }
 }

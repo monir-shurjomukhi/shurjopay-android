@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
-class OtpViewModel(application: Application) : BaseViewModel(application) {
+class VerificationViewModel(application: Application) : BaseViewModel(application) {
   private val _otp = MutableLiveData<Otp>()
   val otp: LiveData<Otp>
     get() = _otp
@@ -44,6 +44,6 @@ class OtpViewModel(application: Application) : BaseViewModel(application) {
   }
 
   companion object {
-    private const val TAG = "RegistrationViewModel"
+    private const val TAG = "VerificationViewModel"
   }
 }

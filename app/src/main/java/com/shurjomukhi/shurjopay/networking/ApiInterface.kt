@@ -1,9 +1,6 @@
 package com.shurjomukhi.shurjopay.networking
 
-import com.shurjomukhi.shurjopay.model.Login
-import com.shurjomukhi.shurjopay.model.Otp
-import com.shurjomukhi.shurjopay.model.QrCode
-import com.shurjomukhi.shurjopay.model.Registration
+import com.shurjomukhi.shurjopay.model.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -40,7 +37,7 @@ interface ApiInterface {
     @Body registration: Registration
   ): Response<Registration>
 
-  @POST("verify-otp")
+  @POST("customer-verify-otp")
   suspend fun verifyOTP(
     @Body otp: Otp
   ): Response<Otp>
@@ -49,4 +46,9 @@ interface ApiInterface {
   suspend fun login(
     @Body login: Login
   ): Response<Login>
+
+  @POST("customer-forgot-pass")
+  suspend fun forgotPassword(
+    @Body forgotPassword: ForgotPassword
+  ): Response<ForgotPassword>
 }

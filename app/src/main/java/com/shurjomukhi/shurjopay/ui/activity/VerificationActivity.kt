@@ -8,13 +8,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.databinding.ActivityVerificationBinding
 import com.shurjomukhi.shurjopay.model.Otp
-import com.shurjomukhi.shurjopay.ui.viewmodel.OtpViewModel
+import com.shurjomukhi.shurjopay.ui.viewmodel.VerificationViewModel
 import com.shurjomukhi.shurjopay.utils.MOBILE_NUMBER
 
 class VerificationActivity : BaseActivity() {
 
   private lateinit var binding: ActivityVerificationBinding
-  private lateinit var viewModel: OtpViewModel
+  private lateinit var viewModel: VerificationViewModel
 
   private lateinit var mobileNumber: String
 
@@ -29,7 +29,7 @@ class VerificationActivity : BaseActivity() {
       supportActionBar!!.setDisplayShowHomeEnabled(true)
     }
 
-    viewModel = ViewModelProvider(this).get(OtpViewModel::class.java)
+    viewModel = ViewModelProvider(this).get(VerificationViewModel::class.java)
 
     mobileNumber = intent.getStringExtra(MOBILE_NUMBER).toString()
 
