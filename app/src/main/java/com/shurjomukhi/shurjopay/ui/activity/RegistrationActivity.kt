@@ -9,6 +9,8 @@ import com.shurjomukhi.shurjopay.databinding.ActivityRegistrationBinding
 import com.shurjomukhi.shurjopay.model.Registration
 import com.shurjomukhi.shurjopay.ui.viewmodel.RegistrationViewModel
 import com.shurjomukhi.shurjopay.utils.MOBILE_NUMBER
+import com.shurjomukhi.shurjopay.utils.VERIFICATION_TYPE
+import com.shurjomukhi.shurjopay.utils.VERIFY_OTP
 
 class RegistrationActivity : BaseActivity() {
 
@@ -54,6 +56,7 @@ class RegistrationActivity : BaseActivity() {
           //actionSnack(binding.root, R.string.registration_successful, R.string.login) { onBackPressed() }
           val intent = Intent(this, VerificationActivity::class.java)
           intent.putExtra(MOBILE_NUMBER, binding.phoneLayout.editText?.text.toString())
+          intent.putExtra(VERIFICATION_TYPE, VERIFY_OTP)
           startActivity(intent)
         } else if (it.message.equals("0")) {
           actionSnack(binding.root, R.string.you_are_already_registered, R.string.login) { onBackPressed() }

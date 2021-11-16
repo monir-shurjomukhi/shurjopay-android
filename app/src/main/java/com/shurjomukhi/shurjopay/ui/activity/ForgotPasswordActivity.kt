@@ -1,10 +1,8 @@
 package com.shurjomukhi.shurjopay.ui.activity
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import com.shurjomukhi.shurjopay.R
+import androidx.appcompat.app.AppCompatActivity
 import com.shurjomukhi.shurjopay.databinding.ActivityForgotPasswordBinding
 
 class ForgotPasswordActivity : AppCompatActivity() {
@@ -23,7 +21,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
     }
 
     binding.forgotPasswordButton.setOnClickListener {
-      startActivity(Intent(this, VerificationActivity::class.java))
+      //startActivity(Intent(this, VerificationActivity::class.java))
     }
   }
 

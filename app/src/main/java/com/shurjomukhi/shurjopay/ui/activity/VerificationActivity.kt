@@ -10,6 +10,9 @@ import com.shurjomukhi.shurjopay.databinding.ActivityVerificationBinding
 import com.shurjomukhi.shurjopay.model.Otp
 import com.shurjomukhi.shurjopay.ui.viewmodel.VerificationViewModel
 import com.shurjomukhi.shurjopay.utils.MOBILE_NUMBER
+import com.shurjomukhi.shurjopay.utils.VERIFICATION_TYPE
+import com.shurjomukhi.shurjopay.utils.VERIFY_ACCOUNT
+import com.shurjomukhi.shurjopay.utils.VERIFY_OTP
 
 class VerificationActivity : BaseActivity() {
 
@@ -17,6 +20,7 @@ class VerificationActivity : BaseActivity() {
   private lateinit var viewModel: VerificationViewModel
 
   private lateinit var mobileNumber: String
+  private lateinit var verificationType: String
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -32,6 +36,7 @@ class VerificationActivity : BaseActivity() {
     viewModel = ViewModelProvider(this).get(VerificationViewModel::class.java)
 
     mobileNumber = intent.getStringExtra(MOBILE_NUMBER).toString()
+    verificationType = intent.getStringExtra(VERIFICATION_TYPE).toString()
 
     binding.otp1Layout.editText?.requestFocus()
 
@@ -120,8 +125,12 @@ class VerificationActivity : BaseActivity() {
       return
     }
 
-    val otp = Otp(otpString, mobileNumber, null)
-    viewModel.verifyOTP(otp)
+    if (verificationType == VERIFY_OTP) {
+      val otp = Otp(otpString, mobileNumber, null)
+      viewModel.verifyOTP(otp)
+    } else if (verificationType == VERIFY_ACCOUNT) {
+
+    }
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
