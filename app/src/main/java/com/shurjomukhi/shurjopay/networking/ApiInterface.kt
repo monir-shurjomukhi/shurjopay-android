@@ -42,6 +42,11 @@ interface ApiInterface {
     @Body otp: Otp
   ): Response<Otp>
 
+  @POST("customer-verify-account")
+  suspend fun verifyAccount(
+    @Body otp: Otp
+  ): Response<Otp>
+
   @POST("customer-login")
   suspend fun login(
     @Body login: Login

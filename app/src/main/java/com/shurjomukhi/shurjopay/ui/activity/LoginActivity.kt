@@ -8,6 +8,7 @@ import com.shurjomukhi.shurjopay.databinding.ActivityLoginBinding
 import com.shurjomukhi.shurjopay.model.ForgotPassword
 import com.shurjomukhi.shurjopay.model.Login
 import com.shurjomukhi.shurjopay.ui.viewmodel.LoginViewModel
+import com.shurjomukhi.shurjopay.utils.MOBILE_NUMBER
 import com.shurjomukhi.shurjopay.utils.VERIFICATION_TYPE
 import com.shurjomukhi.shurjopay.utils.VERIFY_ACCOUNT
 
@@ -70,6 +71,7 @@ class LoginActivity : BaseActivity() {
     viewModel.forgotPassword.observe(this, {
       if (it.message.equals("1")) {
         val intent = Intent(this, VerificationActivity::class.java)
+        intent.putExtra(MOBILE_NUMBER, binding.phoneLayout.editText?.text.toString())
         intent.putExtra(VERIFICATION_TYPE, VERIFY_ACCOUNT)
         startActivity(intent)
       }
@@ -105,7 +107,6 @@ class LoginActivity : BaseActivity() {
 
   private fun activate() {
     val forgotPassword = ForgotPassword(binding.phoneLayout.editText?.text.toString(), null)
-
     viewModel.forgotPassword(forgotPassword)
   }
 }

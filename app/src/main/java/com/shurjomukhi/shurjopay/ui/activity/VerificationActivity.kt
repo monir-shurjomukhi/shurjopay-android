@@ -38,6 +38,7 @@ class VerificationActivity : BaseActivity() {
     mobileNumber = intent.getStringExtra(MOBILE_NUMBER).toString()
     verificationType = intent.getStringExtra(VERIFICATION_TYPE).toString()
 
+    binding.phoneTextView.text = mobileNumber
     binding.otp1Layout.editText?.requestFocus()
 
     binding.otp1Layout.editText?.doOnTextChanged { text, start, before, count ->
@@ -102,8 +103,14 @@ class VerificationActivity : BaseActivity() {
 
     viewModel.otp.observe(this, {
       if (it.message.equals("1")) {
-        actionSnack(binding.root, R.string.registration_successful, R.string.login) {
-          startActivity(Intent(this, LoginActivity::class.java))
+        if (verificationType == VERIFY_OTP) {
+          actionSnack(binding.root, R.string.registration_successful, R.string.login) {
+            startActivity(Intent(this, LoginActivity::class.java))
+          }
+        } else if (verificationType == VERIFY_ACCOUNT) {
+          actionSnack(binding.root, R.string.verification_successful, R.string.login) {
+            startActivity(Intent(this, LoginActivity::class.java))
+          }
         }
       } else if (it.message.equals("0")) {
         shortSnack(binding.root, R.string.otp_did_not_match)
@@ -125,11 +132,11 @@ class VerificationActivity : BaseActivity() {
       return
     }
 
+    val otp = Otp(otpString, mobileNumber, null)
     if (verificationType == VERIFY_OTP) {
-      val otp = Otp(otpString, mobileNumber, null)
       viewModel.verifyOTP(otp)
     } else if (verificationType == VERIFY_ACCOUNT) {
-
+      viewModel.verifyAccount(otp)
     }
   }
 

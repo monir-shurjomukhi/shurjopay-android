@@ -43,6 +43,33 @@ class VerificationViewModel(application: Application) : BaseViewModel(applicatio
     }
   }
 
+  fun verifyAccount(otp: Otp) {
+    viewModelScope.launch {
+      progress.value = true
+
+      val response = try {
+        apiClient.verifyAccount(otp)
+      } catch (e: IOException) {
+        Log.e(TAG, "verifyAccount: ${e.message}", e)
+        progress.value = false
+        message.value = R.string.unable_to_connect
+        return@launch
+      } catch (e: HttpException) {
+        Log.e(TAG, "verifyAccount: ${e.message}", e)
+        progress.value = false
+        message.value = R.string.unable_to_connect
+        return@launch
+      }
+
+      progress.value = false
+      if (response.isSuccessful && response.body() != null) {
+        _otp.value = response.body()
+      } else {
+        message.value = R.string.unable_to_connect
+      }
+    }
+  }
+
   companion object {
     private const val TAG = "VerificationViewModel"
   }
