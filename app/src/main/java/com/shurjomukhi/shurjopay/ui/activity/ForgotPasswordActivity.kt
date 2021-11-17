@@ -9,9 +9,9 @@ import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.databinding.ActivityForgotPasswordBinding
 import com.shurjomukhi.shurjopay.model.ForgotPassword
 import com.shurjomukhi.shurjopay.ui.viewmodel.ForgotPasswordViewModel
+import com.shurjomukhi.shurjopay.utils.FORGOT_PASSWORD
 import com.shurjomukhi.shurjopay.utils.MOBILE_NUMBER
 import com.shurjomukhi.shurjopay.utils.VERIFICATION_TYPE
-import com.shurjomukhi.shurjopay.utils.VERIFY_OTP
 
 class ForgotPasswordActivity : AppCompatActivity() {
 
@@ -35,7 +35,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
       if (it.message.equals("1")) {
         val intent = Intent(this, VerificationActivity::class.java)
         intent.putExtra(MOBILE_NUMBER, binding.phoneLayout.editText?.text.toString())
-        intent.putExtra(VERIFICATION_TYPE, VERIFY_OTP)
+        intent.putExtra(VERIFICATION_TYPE, FORGOT_PASSWORD)
         startActivity(intent)
       }
     })
@@ -45,7 +45,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
     }
   }
 
-  fun forgotPassword() {
+  private fun forgotPassword() {
     val phone = binding.phoneLayout.editText?.text.toString()
 
     if (phone.isEmpty()) {

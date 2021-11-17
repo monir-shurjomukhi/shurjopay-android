@@ -25,14 +25,17 @@
   <string name="ok">OK</string>
   <string name="don_t_have_account">Don\'t have account?</string>
   <string name="register">Register</string>
+  <string name="change_password">Change Password</string>
   <string name="login">Login</string>
   <string name="forgot_password_underlined"><u>Forgot Password?</u></string>
   <string name="forgot_password">Forgot Password</string>
   <string name="password">Password</string>
+  <string name="new_password">New Password</string>
   <string name="username">Username</string>
   <string name="already_have_an_account">Already have an account?</string>
   <string name="phone_number">Phone Number</string>
   <string name="retype_password">Retype Password</string>
+  <string name="retype_new_password">Retype New Password</string>
   <string name="email">Email</string>
   <string name="name">Name</string>
   <string name="enter_the_phone_number_associated_with_your_account">Enter the phone number associated with your account</string>

@@ -9,10 +9,7 @@ import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.databinding.ActivityVerificationBinding
 import com.shurjomukhi.shurjopay.model.Otp
 import com.shurjomukhi.shurjopay.ui.viewmodel.VerificationViewModel
-import com.shurjomukhi.shurjopay.utils.MOBILE_NUMBER
-import com.shurjomukhi.shurjopay.utils.VERIFICATION_TYPE
-import com.shurjomukhi.shurjopay.utils.VERIFY_ACCOUNT
-import com.shurjomukhi.shurjopay.utils.VERIFY_OTP
+import com.shurjomukhi.shurjopay.utils.*
 
 class VerificationActivity : BaseActivity() {
 
@@ -111,6 +108,8 @@ class VerificationActivity : BaseActivity() {
           actionSnack(binding.root, R.string.verification_successful, R.string.login) {
             startActivity(Intent(this, LoginActivity::class.java))
           }
+        } else if (verificationType == FORGOT_PASSWORD) {
+          startActivity(Intent(this, LoginActivity::class.java))
         }
       } else if (it.message.equals("0")) {
         shortSnack(binding.root, R.string.otp_did_not_match)
@@ -133,7 +132,7 @@ class VerificationActivity : BaseActivity() {
     }
 
     val otp = Otp(otpString, mobileNumber, null)
-    if (verificationType == VERIFY_OTP) {
+    if (verificationType == VERIFY_OTP || verificationType == FORGOT_PASSWORD) {
       viewModel.verifyOTP(otp)
     } else if (verificationType == VERIFY_ACCOUNT) {
       viewModel.verifyAccount(otp)
