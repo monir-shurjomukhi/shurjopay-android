@@ -1,16 +1,18 @@
 package com.shurjomukhi.shurjopay.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.databinding.ActivityChangePasswordBinding
 import com.shurjomukhi.shurjopay.model.ChangePassword
+import com.shurjomukhi.shurjopay.ui.viewmodel.ChangePasswordViewModel
 import com.shurjomukhi.shurjopay.utils.MOBILE_NUMBER
 
-class ChangePasswordActivity : AppCompatActivity() {
+class ChangePasswordActivity : BaseActivity() {
 
   private lateinit var binding: ActivityChangePasswordBinding
-
+  private lateinit var viewModel: ChangePasswordViewModel
   private lateinit var mobileNumber: String
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +26,21 @@ class ChangePasswordActivity : AppCompatActivity() {
       supportActionBar!!.setDisplayShowHomeEnabled(true)
     }
 
+    viewModel = ViewModelProvider(this).get(ChangePasswordViewModel::class.java)
     mobileNumber = intent.getStringExtra(MOBILE_NUMBER).toString()
 
-    binding.changePasswordButton.setOnClickListener {
+    viewModel.changePassword.observe(this, {
+      if (it.message.equals("1")) {
+        actionSnack(binding.root, R.string.password_changed_successfully, R.string.login) {
+          startActivity(Intent(this, LoginActivity::class.java))
+        }
+      } else {
+        shortSnack(binding.root, R.string.something_went_wrong)
+      }
+    })
 
+    binding.changePasswordButton.setOnClickListener {
+      changePassword()
     }
   }
 
@@ -55,5 +68,6 @@ class ChangePasswordActivity : AppCompatActivity() {
     }
 
     val changePassword = ChangePassword(password, mobileNumber, null)
+    viewModel.changePassword(changePassword)
   }
 }
