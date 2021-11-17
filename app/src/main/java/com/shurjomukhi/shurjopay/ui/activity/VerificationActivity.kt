@@ -103,10 +103,12 @@ class VerificationActivity : BaseActivity() {
         if (verificationType == VERIFY_OTP) {
           actionSnack(binding.root, R.string.registration_successful, R.string.login) {
             startActivity(Intent(this, LoginActivity::class.java))
+            finishAffinity()
           }
         } else if (verificationType == VERIFY_ACCOUNT) {
           actionSnack(binding.root, R.string.verification_successful, R.string.login) {
             startActivity(Intent(this, LoginActivity::class.java))
+            finishAffinity()
           }
         } else if (verificationType == FORGOT_PASSWORD) {
           val intent = Intent(this, ChangePasswordActivity::class.java)

@@ -44,6 +44,7 @@ class ChangePasswordActivity : BaseActivity() {
       if (it.message.equals("1")) {
         actionSnack(binding.root, R.string.password_changed_successfully, R.string.login) {
           startActivity(Intent(this, LoginActivity::class.java))
+          finishAffinity()
         }
       } else {
         shortSnack(binding.root, R.string.something_went_wrong)
