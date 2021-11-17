@@ -2,6 +2,7 @@ package com.shurjomukhi.shurjopay.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.databinding.ActivityChangePasswordBinding
@@ -29,6 +30,16 @@ class ChangePasswordActivity : BaseActivity() {
     viewModel = ViewModelProvider(this).get(ChangePasswordViewModel::class.java)
     mobileNumber = intent.getStringExtra(MOBILE_NUMBER).toString()
 
+    viewModel.progress.observe(this, {
+      if (it) {
+        showProgress()
+      } else {
+        hideProgress()
+      }
+    })
+    viewModel.message.observe(this, {
+      shortSnack(binding.root, it)
+    })
     viewModel.changePassword.observe(this, {
       if (it.message.equals("1")) {
         actionSnack(binding.root, R.string.password_changed_successfully, R.string.login) {
@@ -69,5 +80,13 @@ class ChangePasswordActivity : BaseActivity() {
 
     val changePassword = ChangePassword(password, mobileNumber, null)
     viewModel.changePassword(changePassword)
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    // handle arrow click here
+    if (item.itemId == android.R.id.home) {
+      onBackPressed()
+    }
+    return super.onOptionsItemSelected(item)
   }
 }
