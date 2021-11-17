@@ -56,4 +56,9 @@ interface ApiInterface {
   suspend fun forgotPassword(
     @Body forgotPassword: ForgotPassword
   ): Response<ForgotPassword>
+
+  @POST("customer-pass-change")
+  suspend fun changePassword(
+    @Body changePassword: ChangePassword
+  ): Response<ChangePassword>
 }
