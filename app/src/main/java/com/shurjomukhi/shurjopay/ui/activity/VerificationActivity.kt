@@ -109,7 +109,9 @@ class VerificationActivity : BaseActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
           }
         } else if (verificationType == FORGOT_PASSWORD) {
-          startActivity(Intent(this, LoginActivity::class.java))
+          val intent = Intent(this, ChangePasswordActivity::class.java)
+          intent.putExtra(MOBILE_NUMBER, mobileNumber)
+          startActivity(intent)
         }
       } else if (it.message.equals("0")) {
         shortSnack(binding.root, R.string.otp_did_not_match)
