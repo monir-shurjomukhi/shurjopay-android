@@ -3,7 +3,6 @@ package com.shurjomukhi.shurjopay.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.databinding.ActivityForgotPasswordBinding
@@ -13,7 +12,7 @@ import com.shurjomukhi.shurjopay.utils.FORGOT_PASSWORD
 import com.shurjomukhi.shurjopay.utils.MOBILE_NUMBER
 import com.shurjomukhi.shurjopay.utils.VERIFICATION_TYPE
 
-class ForgotPasswordActivity : AppCompatActivity() {
+class ForgotPasswordActivity : BaseActivity() {
 
   private lateinit var binding: ActivityForgotPasswordBinding
   private lateinit var viewModel: ForgotPasswordViewModel
@@ -31,6 +30,16 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
     viewModel = ViewModelProvider(this).get(ForgotPasswordViewModel::class.java)
 
+    viewModel.progress.observe(this, {
+      if (it) {
+        showProgress()
+      } else {
+        hideProgress()
+      }
+    })
+    viewModel.message.observe(this, {
+      shortSnack(binding.root, it)
+    })
     viewModel.forgotPassword.observe(this, {
       if (it.message.equals("1")) {
         val intent = Intent(this, VerificationActivity::class.java)
