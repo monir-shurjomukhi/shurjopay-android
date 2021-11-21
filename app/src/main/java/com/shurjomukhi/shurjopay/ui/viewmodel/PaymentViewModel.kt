@@ -8,11 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.model.QrCode
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.HttpException
-import retrofit2.Response
-import java.lang.Exception
+import java.io.IOException
 
 class PaymentViewModel(application: Application) : BaseViewModel(application) {
   private val _html = MutableLiveData<String>()
@@ -23,10 +20,10 @@ class PaymentViewModel(application: Application) : BaseViewModel(application) {
     viewModelScope.launch {
       progress.value = true
 
+      val qrCode = QrCode(qrData)
       val response = try {
-        val qrCode = QrCode(qrData)
         apiClientQR.getHtml(qrCode)
-      } catch (e: Exception) {
+      } catch (e: IOException) {
         Log.e(TAG, "register: ${e.message}", e)
         progress.value = false
         message.value = R.string.unable_to_connect
