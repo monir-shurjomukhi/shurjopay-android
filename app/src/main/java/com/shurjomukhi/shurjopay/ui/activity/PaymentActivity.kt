@@ -1,28 +1,17 @@
 package com.shurjomukhi.shurjopay.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
-import android.webkit.WebView
-import android.widget.ProgressBar
-import android.app.ProgressDialog
-import android.content.Intent
-import android.os.Bundle
-import com.shurjomukhi.shurjopay.R
-import android.webkit.WebViewClient
-import com.shurjomukhi.shurjopay.ui.activity.PaymentActivity
-import android.webkit.SslErrorHandler
 import android.net.http.SslError
+import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.webkit.SslErrorHandler
 import android.webkit.WebChromeClient
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.lifecycle.ViewModelProvider
+import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.databinding.ActivityPaymentBinding
-import com.shurjomukhi.shurjopay.model.QrCode
-import com.shurjomukhi.shurjopay.networking.ApiClient
-import com.shurjomukhi.shurjopay.networking.ApiInterface
 import com.shurjomukhi.shurjopay.ui.viewmodel.PaymentViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class PaymentActivity : BaseActivity() {
 
@@ -65,7 +54,17 @@ class PaymentActivity : BaseActivity() {
     binding.webView.settings.javaScriptEnabled = true
     binding.webView.settings.domStorageEnabled = true
     binding.webView.settings.loadsImagesAutomatically = true
-    binding.webView.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null)
+    binding.webView.getSettings().saveFormData = true;
+    binding.webView.getSettings().allowContentAccess = true;
+    binding.webView.getSettings().allowFileAccess = true;
+    binding.webView.getSettings().allowFileAccessFromFileURLs = true;
+    binding.webView.getSettings().allowUniversalAccessFromFileURLs = true;
+    binding.webView.isClickable = true
+    if (html.startsWith("http")) {
+      binding.webView.loadUrl(html)
+    } else {
+      binding.webView.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null)
+    }
     binding.webView.webViewClient = object : WebViewClient() {
       override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
         Log.d(TAG, "shouldOverrideUrlLoading: url = $url")
