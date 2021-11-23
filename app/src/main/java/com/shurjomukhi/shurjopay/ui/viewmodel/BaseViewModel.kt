@@ -15,5 +15,7 @@ open class BaseViewModel(application: Application) : AndroidViewModel(applicatio
     ApiClient().getApiClient("https://engine.shurjopayment.com/api/")
       .create(ApiInterface::class.java)
   val apiClientQR: ApiInterface =
-    ApiClient().getApiClient("http://qr.shurjopay.com.bd/").create(ApiInterface::class.java)
+    ApiClient().getApiClient("https://qr.shurjopay.com.bd/api/").create(ApiInterface::class.java)
+  val apiClientQR2: ApiInterface =
+    ApiClient().getApiClient("http://192.168.68.154:8080/api/").create(ApiInterface::class.java)
 }
