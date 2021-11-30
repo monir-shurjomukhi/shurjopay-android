@@ -7,18 +7,23 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import com.shurjomukhi.shurjopay.preference.SPPreference
 
 open class BaseActivity: AppCompatActivity() {
+  protected lateinit var preference: SPPreference
   private lateinit var progressDialog: ProgressDialog
 
   override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
     super.onCreate(savedInstanceState, persistentState)
-  }
 
-  protected fun showProgress() {
+    preference = SPPreference(this)
+
     progressDialog = ProgressDialog(this)
     progressDialog.setMessage("Please Wait...")
     progressDialog.setCancelable(false)
+  }
+
+  protected fun showProgress() {
     progressDialog.show()
   }
 

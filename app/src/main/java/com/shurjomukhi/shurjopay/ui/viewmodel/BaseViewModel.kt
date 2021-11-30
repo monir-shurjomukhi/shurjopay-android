@@ -5,12 +5,12 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.shurjomukhi.shurjopay.networking.ApiClient
 import com.shurjomukhi.shurjopay.networking.ApiInterface
+import com.shurjomukhi.shurjopay.preference.SPPreference
 
 open class BaseViewModel(application: Application) : AndroidViewModel(application) {
   val progress = MutableLiveData<Boolean>()
   val message = MutableLiveData<Int>()
-
-  //val preference = VetPreference(application)
+  val preference = SPPreference(application)
   val apiClient: ApiInterface =
     ApiClient().getApiClient("https://engine.shurjopayment.com/api/")
       .create(ApiInterface::class.java)

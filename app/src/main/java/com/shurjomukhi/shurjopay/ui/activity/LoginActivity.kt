@@ -50,6 +50,7 @@ class LoginActivity : BaseActivity() {
     viewModel.login.observe(this, {
       when {
         it.message.equals("1") -> {
+          preference.putMobileNumber(it.mobile_no)
           startActivity(Intent(this, MainActivity::class.java))
         }
         it.message.equals("2") -> {
