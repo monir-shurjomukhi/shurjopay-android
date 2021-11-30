@@ -61,4 +61,9 @@ interface ApiInterface {
   suspend fun changePassword(
     @Body changePassword: ChangePassword
   ): Response<ChangePassword>
+
+  @POST("customer-logout")
+  suspend fun logout(
+    @Body logout: Logout
+  ): Response<Logout>
 }

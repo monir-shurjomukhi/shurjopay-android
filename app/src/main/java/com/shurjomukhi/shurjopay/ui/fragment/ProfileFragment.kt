@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.shurjomukhi.shurjopay.databinding.FragmentProfileBinding
-import com.shurjomukhi.shurjopay.ui.transactions.ProfileViewModel
+import com.shurjomukhi.shurjopay.ui.viewmodel.ProfileViewModel
 
 class ProfileFragment : Fragment() {
 

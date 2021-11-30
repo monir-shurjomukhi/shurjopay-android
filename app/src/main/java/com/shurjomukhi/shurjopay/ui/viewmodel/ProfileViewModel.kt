@@ -1,13 +1,13 @@
-package com.shurjomukhi.shurjopay.ui.transactions
+package com.shurjomukhi.shurjopay.ui.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.shurjomukhi.shurjopay.model.Logout
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel(application: Application) : BaseViewModel(application) {
 
-  private val _text = MutableLiveData<String>().apply {
-    value = "This is Profile Fragment"
-  }
-  val text: LiveData<String> = _text
+  private val _logout = MutableLiveData<Logout>()
+  val logout: LiveData<Logout>
+    get() = _logout
 }
