@@ -7,13 +7,14 @@ import com.shurjomukhi.shurjopay.R
 import com.shurjomukhi.shurjopay.databinding.ActivityLoginBinding
 import com.shurjomukhi.shurjopay.model.ForgotPassword
 import com.shurjomukhi.shurjopay.model.Login
+import com.shurjomukhi.shurjopay.preference.SPPreference
 import com.shurjomukhi.shurjopay.ui.viewmodel.LoginViewModel
 import com.shurjomukhi.shurjopay.utils.MOBILE_NUMBER
 import com.shurjomukhi.shurjopay.utils.VERIFICATION_TYPE
 import com.shurjomukhi.shurjopay.utils.VERIFY_ACCOUNT
 
 class LoginActivity : BaseActivity() {
-
+  private lateinit var preference: SPPreference
   private lateinit var binding: ActivityLoginBinding
   private lateinit var viewModel: LoginViewModel
 
@@ -22,6 +23,7 @@ class LoginActivity : BaseActivity() {
     binding = ActivityLoginBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
+    preference = SPPreference(this)
     viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
     binding.registerTextView.setOnClickListener {
@@ -50,7 +52,7 @@ class LoginActivity : BaseActivity() {
     viewModel.login.observe(this, {
       when {
         it.message.equals("1") -> {
-          preference.putMobileNumber(it.mobile_no)
+          preference.putMobileNumber(binding.phoneLayout.editText?.text.toString())
           startActivity(Intent(this, MainActivity::class.java))
         }
         it.message.equals("2") -> {
